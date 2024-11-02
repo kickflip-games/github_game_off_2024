@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://hjm34vevg1of"]
+[gd_scene load_steps=9 format=4 uid="uid://hjm34vevg1of"]
 
 [ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="1_jx63k"]
 [ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="2_0x7sv"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_ciyt2"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_1rdcl"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_kpn84"]
-[ext_resource type="PackedScene" uid="uid://c2utphmfam5kp" path="res://glass/glass.tscn" id="6_w86po"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cddi"]
 texture = ExtResource("1_jx63k")
@@ -918,8 +917,3 @@ editor_draw_limits = true
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("5_kpn84")
-
-[node name="Glass" parent="." instance=ExtResource("6_w86po")]
-position = Vector2(81, -4)
-rotation = -1.5708
-scale = Vector2(0.16, 0.16)
