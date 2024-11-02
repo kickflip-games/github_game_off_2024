@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 	# Hook physics
 	if $Chain.hooked:
-		chain_velocity = (global_position - $Chain.tip).normalized() * CHAIN_PULL
+		chain_velocity = (global_position - $Chain.tip).normalized() * -CHAIN_PULL
 		if chain_velocity.y > 0.0:
 			chain_velocity.y *= 0.55 
 		else:

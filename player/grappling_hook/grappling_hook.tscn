@@ -12,14 +12,18 @@ script = ExtResource("1_c708d")
 
 [node name="Links" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1, 1)
-scale = Vector2(0.51, 85)
+texture_repeat = 2
+position = Vector2(0, 1)
+scale = Vector2(0.3, 1)
 texture = ExtResource("2_5tkt8")
 centered = false
 offset = Vector2(-8, -1.95)
+region_enabled = true
+region_rect = Rect2(1.56455, 2.07995, 12.6128, 99.9106)
 
 [node name="Tip" type="CharacterBody2D" parent="."]
 collision_layer = 2
+motion_mode = 1
 
 [node name="Hook" type="Sprite2D" parent="Tip"]
 texture = ExtResource("3_s3fin")

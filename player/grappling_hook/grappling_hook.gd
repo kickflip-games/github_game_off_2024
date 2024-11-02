@@ -4,16 +4,16 @@ extends Node2D
 var direction: Vector2 = Vector2.ZERO           # Direction in which the chain was shot
 var tip: Vector2 = Vector2.ZERO                 # Position of the chain's tip
 
-const SPEED: float = 50.0                       # Speed at which the chain moves
+const SPEED: float = 20.0                       # Speed at which the chain moves
 
 var flying: bool = false                        # Whether the chain is moving through the air
 var hooked: bool = false                        # Whether the chain has connected to a wall
 
 # shoot() shoots the chain in a given direction
-func shoot(dir: Vector2) -> void:
-	direction = dir.normalized()                # Normalize and save the direction
-	flying = true                               # Set the chain to fly
-	tip = global_position                       # Reset tip position to the player's current position
+func shoot(target: Vector2) -> void:
+	direction = (target - global_position).normalized()
+	flying = true
+	tip = global_position                   # Reset tip position to the player's current position
 
 # release() releases the chain
 func release() -> void:
@@ -29,8 +29,8 @@ func _process(_delta: float) -> void:
 	var tip_loc = to_local(tip)                 # Convert tip position to local coordinates
 
 	# Rotate the chain links and tip to align with the line from origin to tip
-	links.rotation = position.angle_to_point(tip_loc) - deg_to_rad(90)
-	$Tip.rotation = position.angle_to_point(tip_loc) - deg_to_rad(90)
+	links.rotation = position.angle_to_point(tip_loc) + deg_to_rad(90)
+	$Tip.rotation = position.angle_to_point(tip_loc) + deg_to_rad(90)
 	
 	links.position = tip_loc                    # Set the links' start position to the tip
 	links.region_rect.size.y = tip_loc.length() # Extend the chain to match distance to the tip
@@ -43,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 		var collision = $Tip.move_and_collide(direction * SPEED)
 		if collision:
 			hooked = true                       # If we hit something, we're hooked
-			flying = false                      # Stop flying
+			flying = false  
+			print("Hooked!")                    # Stop flying
 
 	tip = $Tip.global_position                  # Update tip for the next frame
