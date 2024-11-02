@@ -3,6 +3,8 @@ on: push
   push:
     branches:
       - prod  # Only runs on pushes to the 'prod' branch
+  workflow_dispatch:  # Allows manual trigger for the workflow
+
 
 
 env:
