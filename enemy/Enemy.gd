@@ -67,6 +67,7 @@ func handle_idle(delta: float) -> void:
 		else:
 			animation.flip_h = false
 
+
 		animation.play("idle")
 		velocity.x = 0
 
