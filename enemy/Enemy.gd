@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animation:AnimatedSprite2D = $AnimatedSprite2D
 @onready var walk_timer:Timer = $WalkTimer
+@onready var shoot_timer:Timer = $ShootTimer
 @onready var detection_ray_left:ShapeCast2D = $RightDetection
 @onready var detection_ray_right:ShapeCast2D = $LeftDetection
 
@@ -12,6 +13,7 @@ extends CharacterBody2D
 
 enum STATE {IDLE, ALERT, ATTACK, DEATH, WALKING}
 var current_state: STATE = STATE.IDLE
+var shoot_cooling_down:bool = false
 
 const SPEED = 100.0
 const WALK_DURATION: float = 0.1
@@ -80,13 +82,15 @@ func handle_alert() -> void:
 func handle_attack() -> void:
 	#animation.play("attack")
 	print("Enemy attacks!")
-	shoot_bullet()
-	current_state = STATE.ALERT # Return to alert after attacking
+	if not shoot_cooling_down:
+		shoot_bullet()
+		current_state = STATE.ALERT # Return to alert after attacking
 
 
 
 func shoot_bullet() -> void:
 	if bullet_scene:
+		shoot_cooling_down = true
 		var bullet_instance = bullet_scene.instantiate() as Node2D
 		get_parent().add_child(bullet_instance)
 		bullet_instance.position = global_position
@@ -110,20 +114,12 @@ func check_player_detection() -> void:
 
 
 
-func _on_timer_timeout() -> void:
+func _on_walk_timer_timeout() -> void:
 	print("Timeout!")
 	direction *= -1 # Flip direction
 	current_state = STATE.IDLE # Return to idle state
 
-#
-#func _draw() -> void:
-	## Draw the detection rays for debugging
-	#var ray_start_left = global_position
-	#var ray_end_left = ray_start_left + detection_ray_left.cast_to
-	#var ray_start_right = global_position
-	#var ray_end_right = ray_start_right + detection_ray_right.cast_to
-	#
-	#if detection_ray_right.enabled:
-		#draw_line(ray_start_right, ray_end_right, Color.RED, 2.0) # Draw right detection ray
-	#else:
-		#draw_line(ray_start_left, ray_end_left, Color.RED, 2.0)   # Draw left detection ray
+
+func _on_shoot_timer_timeout():
+	shoot_cooling_down = false
+	
