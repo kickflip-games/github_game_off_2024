@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdto1w15bi4i5"]
+[gd_scene load_steps=6 format=3 uid="uid://cdto1w15bi4i5"]
 
 [ext_resource type="Script" path="res://enemy/Enemy.gd" id="1_hngig"]
 [ext_resource type="PackedScene" uid="uid://c5ysshq28sye7" path="res://enemy/bullet.tscn" id="2_vt85h"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8saf"]
 size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojq0x"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
@@ -37,5 +39,17 @@ texture = ExtResource("3_mxanc")
 region_enabled = true
 region_rect = Rect2(32, 24, 16, 24)
 
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_ojq0x")
+debug_color = Color(0.572292, 0.548718, 0.242245, 0.42)
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="WalkTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

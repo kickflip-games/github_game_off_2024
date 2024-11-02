@@ -1,8 +1,10 @@
 extends CharacterBody2D
+class_name  Enemy
 
 @onready var animation:Sprite2D = $Sprite2D
 @onready var walk_timer:Timer = $WalkTimer
 @onready var shoot_timer:Timer = $ShootTimer
+@onready var death_timer:Timer = $DeathTimer
 @onready var detection_ray_left:RayCast2D = $RightDetection
 @onready var detection_ray_right:RayCast2D = $LeftDetection
 
@@ -34,11 +36,6 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	if detection_ray_left.is_colliding():
-		print("leftt colliin")
-	if detection_ray_right.is_colliding():
-		print("right colliin")
 
 	check_player_detection()
 	
@@ -49,15 +46,19 @@ func _physics_process(delta: float) -> void:
 		STATE.WALKING:
 			handle_walking(delta)
 		STATE.ATTACK:
-			print("Enemy attacks.")
 			handle_attack()
 		STATE.DEATH:
-			print("Enemy dies.")
+			handle_death()
 		STATE.ALERT:
-			print("Enemy alerted")
 			handle_alert()
 
 	move_and_slide()
+
+
+func handle_death():
+	death_timer.start()
+	
+
 
 func handle_walking(delta:float)->void:
 	#animation.play("walk")
@@ -81,7 +82,6 @@ func handle_alert() -> void:
 
 func handle_attack() -> void:
 	#animation.play("attack")
-	print("Enemy attacks!")
 	if not shoot_cooling_down:
 		shoot_bullet()
 		current_state = STATE.ALERT # Return to alert after attacking
@@ -108,14 +108,19 @@ func check_player_detection() -> void:
 	if detection_ray_left.is_colliding():
 		collider = detection_ray_left.get_collider()
 	if collider is Player:
-		print("Plauer found")
 		current_state = STATE.ALERT
 
 
+func take_damage(knockback_force: Vector2)->void:
+	if current_state!= STATE.DEATH:
+		print("enemy dies+kockcked back")
+		velocity += knockback_force  # Apply the knockback to the enemy's velocity
+		current_state = STATE.DEATH
 
+	
+	
 
 func _on_walk_timer_timeout() -> void:
-	print("Timeout!")
 	direction *= -1 # Flip direction
 	current_state = STATE.IDLE # Return to idle state
 
@@ -123,3 +128,8 @@ func _on_walk_timer_timeout() -> void:
 func _on_shoot_timer_timeout():
 	shoot_cooling_down = false
 	
+
+
+
+func _on_death_timer_timeout():
+	queue_free()

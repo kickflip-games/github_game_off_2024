@@ -11,7 +11,11 @@ const CHAIN_PULL = 105.0
 	 # The velocity of the player (kept over time)
 var chain_velocity: Vector2 = Vector2.ZERO
 var can_jump: bool = false     
+var can_attack:bool = false
 var gravity_scale: float = GRAVITY
+
+# needed for can_attack check
+var nearby_enemies: Array = []
 
 func _ready() -> void:
 	# Ensure the character's gravity scale is set if needed for specific movement
@@ -20,10 +24,20 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
+			if can_attack:
+				attack()
+			
 			$Chain.shoot(event.position - get_viewport().get_visible_rect().size * 0.5)
 		else:
 			$Chain.release()
 
+func attack():
+	for enemy in nearby_enemies:
+		if enemy:  # Ensure the enemy instance is still valid
+			var knockback_force = 3000  # Adjust the strength of the knockback as needed
+			var direction = (enemy.global_position - global_position).normalized()
+			enemy.take_damage(direction * knockback_force)
+	
 func _physics_process(delta: float) -> void:
 	# Handle walking input
 	var walk_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -77,3 +91,21 @@ func _physics_process(delta: float) -> void:
 		elif can_jump:
 			can_jump = false
 			velocity.y = -JUMP_FORCE
+			
+			
+	
+		
+			
+		
+
+
+func _on_detection_area_2d_body_entered(body):
+	
+	if body is Enemy:
+		nearby_enemies.append(body)  # Add the enemy to the list
+		can_attack = true            # Enable attack mode when any enemy is nearby
+
+func _on_detection_area_2d_body_exited(body):
+	if body is Enemy:
+		nearby_enemies.erase(body)   # Remove the enemy from the list
+		can_attack = nearby_enemies.size() > 0  # Set can_attack based on remaining enemies
