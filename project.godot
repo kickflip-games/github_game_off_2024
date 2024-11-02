@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="github_game_off_2024"
+run/main_scene="res://glass/glass.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -22,7 +23,7 @@ Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [layer_names]
 

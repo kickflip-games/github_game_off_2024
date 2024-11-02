@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://biauqi1sgke8e"]
+[gd_scene load_steps=10 format=4 uid="uid://hjm34vevg1of"]
 
-[ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="1_02x6x"]
-[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="2_48oyc"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_ndgsf"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sbymg"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_ee2sf"]
+[ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="1_jx63k"]
+[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="2_0x7sv"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_ciyt2"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_1rdcl"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_kpn84"]
+[ext_resource type="PackedScene" uid="uid://c2utphmfam5kp" path="res://glass/glass.tscn" id="6_w86po"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gp8l7"]
-texture = ExtResource("1_02x6x")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cddi"]
+texture = ExtResource("1_jx63k")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -873,7 +874,7 @@ texture = ExtResource("1_02x6x")
 22:19/0 = 0
 23:19/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_411xk"]
+[sub_resource type="TileSet" id="TileSet_888p8"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 12
 physics_layer_1/collision_layer = 2
@@ -881,36 +882,34 @@ physics_layer_1/collision_mask = 16
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_gp8l7")
+sources/0 = SubResource("TileSetAtlasSource_3cddi")
 
-[sub_resource type="Resource" id="Resource_1rwo6"]
-script = ExtResource("4_sbymg")
+[sub_resource type="Resource" id="Resource_mwf0r"]
+script = ExtResource("4_1rdcl")
 duration = 1.0
 transition = 0
 ease = 2
 
-[node name="PlayerTest" type="Node2D"]
+[node name="TestGlass" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAIAAAAEAAAAAAABAAIAAAAEAAAAAAACAAIAAAAEAAAAAAADAAIAAAAEAAAAAAAEAAIAAAAEAAAAAAAFAAIAAAAEAAAAAAAGAAIAAAAEAAAAAAAHAAIAAAAEAAAAAAAIAAIAAAAEAAAAAAAAAAMAAAAEAAEAAAABAAMAAAAEAAEAAAACAAQAAAAEAAEAAAADAAQAAAAEAAEAAAAEAAUAAAAEAAEAAAAFAAUAAAAEAAEAAAAAAAQAAAAEAAEAAAAAAAUAAAAEAAEAAAAAAAYAAAAEAAEAAAABAAQAAAAEAAEAAAABAAUAAAAEAAEAAAABAAYAAAAEAAEAAAACAAMAAAAEAAEAAAACAAUAAAAEAAEAAAACAAYAAAAEAAEAAAADAAMAAAAEAAEAAAADAAUAAAAEAAEAAAADAAYAAAAEAAEAAAAEAAMAAAAEAAEAAAAEAAQAAAAEAAEAAAAEAAYAAAAEAAEAAAAFAAMAAAAEAAEAAAAFAAQAAAAEAAEAAAAFAAYAAAAEAAEAAAAGAAMAAAAEAAEAAAAGAAQAAAAEAAEAAAAGAAUAAAAEAAEAAAAGAAYAAAAEAAEAAAAHAAMAAAAEAAEAAAAHAAQAAAAEAAEAAAAHAAUAAAAEAAEAAAAHAAYAAAAEAAEAAAAIAAMAAAAEAAEAAAAIAAQAAAAEAAEAAAAIAAUAAAAEAAEAAAAIAAYAAAAEAAEAAAD9////AAADAAAAAAD9/wAAAAAEAAEAAAD9/wEAAAAEAAEAAAD9/wIAAAAEAAEAAAD9/wMAAAAEAAEAAAD9/wQAAAAEAAEAAAD9/wUAAAAEAAEAAAD9/wYAAAAEAAEAAAD+////AAADAAAAAAD+/wAAAAAEAAEAAAD+/wEAAAAEAAEAAAD+/wIAAAAEAAEAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD/////AAABAAAAAAD//wAAAAAHAAEAAAD//wEAAAAHAAEAAAD//wIAAAAEAAEAAAD//wMAAAAEAAEAAAD//wQAAAAEAAEAAAD//wUAAAAEAAEAAAD//wYAAAAEAAEAAAAJAP//AAACAAAAAAAJAAAAAAACAAEAAAAJAAEAAAACAAEAAAAJAAIAAAAEAAEAAAAJAAMAAAAEAAEAAAAJAAQAAAAEAAEAAAAJAAUAAAAEAAEAAAAJAAYAAAAEAAEAAAAKAP//AAADAAAAAAAKAAAAAAAEAAEAAAAKAAEAAAAEAAEAAAAKAAIAAAAEAAEAAAAKAAMAAAAEAAEAAAAKAAQAAAAEAAEAAAAKAAUAAAAEAAEAAAAKAAYAAAAEAAEAAAALAP//AAADAAAAAAALAAAAAAAEAAEAAAALAAEAAAAEAAEAAAALAAIAAAAEAAEAAAALAAMAAAAEAAEAAAALAAQAAAAEAAEAAAALAAUAAAAEAAEAAAALAAYAAAAEAAEAAAAEAP3/AAACAAgAAAAFAP3/AAADAAgAAAAGAP3/AAACAAgAAAAHAP3/AAADAAgAAAA=")
-tile_set = SubResource("TileSet_411xk")
+tile_set = SubResource("TileSet_888p8")
 
-[node name="Player" parent="." instance=ExtResource("2_48oyc")]
+[node name="Player" parent="." instance=ExtResource("2_0x7sv")]
 position = Vector2(19, -9)
 
-[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(19, -9)
-script = ExtResource("3_ndgsf")
+script = ExtResource("3_ciyt2")
 follow_mode = 5
-follow_target = NodePath("../Player")
 zoom = Vector2(1.28, 1.52)
-tween_resource = SubResource("Resource_1rwo6")
+tween_resource = SubResource("Resource_mwf0r")
 dead_zone_width = 1.0
 show_viewfinder_in_play = true
 draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
 position = Vector2(19, -9)
 zoom = Vector2(1.28, 1.52)
 editor_draw_limits = true
@@ -918,4 +917,9 @@ editor_draw_limits = true
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("5_ee2sf")
+script = ExtResource("5_kpn84")
+
+[node name="Glass" parent="." instance=ExtResource("6_w86po")]
+position = Vector2(81, -4)
+rotation = -1.5708
+scale = Vector2(0.16, 0.16)

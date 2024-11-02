@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2utphmfam5kp"]
+
+[ext_resource type="Script" path="res://glass/glass.gd" id="1_je0ia"]
+
+[sub_resource type="Gradient" id="Gradient_76h7g"]
+colors = PackedColorArray(0.788235, 0.996078, 0.968627, 1, 0.827451, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dmq8h"]
+gradient = SubResource("Gradient_76h7g")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flc83"]
+size = Vector2(441, 64)
+
+[node name="Glass" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_je0ia")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(6.89062, 1)
+texture = SubResource("GradientTexture2D_dmq8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_flc83")

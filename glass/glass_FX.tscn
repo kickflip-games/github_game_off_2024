@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://uy2ie6nbjue1"]
+
+[ext_resource type="Script" path="res://glass/glass_fx.gd" id="1_cu5cj"]
+
+[node name="GlassFx" type="Node2D"]
+script = ExtResource("1_cu5cj")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 20
+lifetime = 0.1
+speed_scale = 1.65
+explosiveness = 0.15
+randomness = 0.34
+lifetime_randomness = 0.13
+emission_shape = 3
+emission_rect_extents = Vector2(50, 50)
+gravity = Vector2(0, 0)
+damping_min = 62.626
+damping_max = 62.626
+scale_amount_min = 0.0
+scale_amount_max = 16.15
+color = Color(0.72549, 1, 1, 1)
