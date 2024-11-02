@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const JUMP_FORCE = 1550.0                # Force applied on jumping
 const MOVE_SPEED = 500.0                 # Speed to walk with
