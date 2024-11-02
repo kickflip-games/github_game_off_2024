@@ -20,10 +20,13 @@ config/icon="res://icon.svg"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+Cursor="*res://addons/awesome_custom_cursor/Autoloads/Cursor.tscn"
+GameManager="*res://globals/game_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/2d_shapes/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [input]
 
@@ -53,7 +56,7 @@ jump={
 2d_physics/layer_2="Grapple"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Enemy"
-2d_physics/layer_5="Mouse"
+2d_physics/layer_5="Bullet"
 
 [rendering]
 

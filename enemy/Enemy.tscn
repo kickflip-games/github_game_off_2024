@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdto1w15bi4i5"]
+[gd_scene load_steps=20 format=3 uid="uid://cdto1w15bi4i5"]
 
 [ext_resource type="Script" path="res://enemy/Enemy.gd" id="1_hngig"]
 [ext_resource type="Texture2D" uid="uid://bif5ytdu674vr" path="res://enemy/idle.png" id="2_sldhb"]
+[ext_resource type="PackedScene" uid="uid://c5ysshq28sye7" path="res://enemy/bullet.tscn" id="2_vt85h"]
 [ext_resource type="Texture2D" uid="uid://brnjnoxsspghu" path="res://enemy/walk.png" id="3_ur1h8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f28tl"]
@@ -104,22 +105,39 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8saf"]
 size = Vector2(33.5, 42)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6n63"]
+size = Vector2(3.94, 32.36)
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_hngig")
+bullet_scene = ExtResource("2_vt85h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(15, 21)
+position = Vector2(-1, -1)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6knfa")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16.25, 22)
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_j8saf")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="WalkTimer" type="Timer" parent="."]
 wait_time = 2.0
+autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="RightDetection" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_d6n63")
+target_position = Vector2(78, 0)
+max_results = 4
+collision_mask = 4
+
+[node name="LeftDetection" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_d6n63")
+target_position = Vector2(-78, 0)
+max_results = 4
+collision_mask = 4
+
+[connection signal="timeout" from="WalkTimer" to="." method="_on_timer_timeout"]
