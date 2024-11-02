@@ -14,6 +14,24 @@ config/name="github_game_off_2024"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+Shaker="*res://addons/shaker/src/Shaker.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Grapple"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Enemy"
+2d_physics/layer_5="Mouse"
+
 [rendering]
 
 renderer/rendering_method="mobile"
