@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=14 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://ho25s8ey3tv0" path="res://player/JumpPack_CharacterSpriteSheet.png" id="2_i04hv"]
+[ext_resource type="PackedScene" uid="uid://d0jsi5texctsy" path="res://player/grappling_hook/grappling_hook.tscn" id="3_pfygb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ru6gi"]
 atlas = ExtResource("2_i04hv")
@@ -83,3 +84,5 @@ animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7usrl")
+
+[node name="Chain" parent="." instance=ExtResource("3_pfygb")]
