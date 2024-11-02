@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2utphmfam5kp"]
+
+[ext_resource type="Script" path="res://glass/glass.gd" id="1_je0ia"]
+[ext_resource type="PackedScene" uid="uid://bdiyyxhusbe8c" path="res://shard/shard_emitter.tscn" id="2_6rlr7"]
+
+[sub_resource type="Gradient" id="Gradient_76h7g"]
+colors = PackedColorArray(0.788235, 0.996078, 0.968627, 1, 0.827451, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dmq8h"]
+gradient = SubResource("Gradient_76h7g")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flc83"]
+size = Vector2(151, 37)
+
+[node name="Glass" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("1_je0ia")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(2.28882e-05, -4.47035e-07)
+scale = Vector2(2.3125, 0.53125)
+texture = SubResource("GradientTexture2D_dmq8h")
+
+[node name="ShardEmitter" parent="RigidBody2D/Sprite2D" instance=ExtResource("2_6rlr7")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-0.125, 0.125)
+shape = SubResource("RectangleShape2D_flc83")

@@ -23,7 +23,7 @@ Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/2d_shapes/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [input]
 

@@ -60,7 +60,7 @@ func _ready() -> void:
 			var center = Vector2((t[0].x + t[1].x + t[2].x)/3.0,(t[0].y + t[1].y + t[2].y)/3.0)
 
 			var shard = SHARD.instantiate()
-			shard.position = center
+		shard.position = center
 			shard.hide()
 			shards.append(shard)
 
@@ -108,3 +108,7 @@ func _draw() -> void:
 			draw_line(i[0], i[1], Color.WHITE, 1)
 			draw_line(i[1], i[2], Color.WHITE, 1)
 			draw_line(i[2], i[0], Color.WHITE, 1)
+
+
+func _on_delete_timer_timeout() -> void:
+	pass # Replace with function body.

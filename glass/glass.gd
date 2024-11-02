@@ -1,13 +1,15 @@
 extends RigidBody2D
 
 var glass_particles = preload("res://glass/glass_FX.tscn")
+var fx_instance =glass_particles.instantiate()
 
 func _ready():
-	# Setup collision detection
-	contact_monitor = true
-	max_contacts_reported = 1
-	freeze = true  # Keep glass static until hit
-
-func _on_body_entered(body):
-	if body.is_in_group("player"):
-		
+	print("player test")
+	pass
+	
+func on_collision() -> void:
+	print("player collided")
+	Sprite2D.visible = false
+	add_child(fx_instance)
+	glass_particles.can_instantiate()
+	queue_free()
