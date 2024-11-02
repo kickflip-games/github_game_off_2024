@@ -4,7 +4,7 @@ extends Node2D
 var direction: Vector2 = Vector2.ZERO           # Direction in which the chain was shot
 var tip: Vector2 = Vector2.ZERO                 # Position of the chain's tip
 
-const SPEED: float = 20.0                       # Speed at which the chain moves
+const SPEED: float = 70.0                       # Speed at which the chain moves
 
 var flying: bool = false                        # Whether the chain is moving through the air
 var hooked: bool = false                        # Whether the chain has connected to a wall
