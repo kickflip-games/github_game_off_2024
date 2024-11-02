@@ -1,5 +1,3 @@
-# GlassParticles.tscn
-# Add this as a separate scene:
 extends CPUParticles2D
 
 func _ready():
