@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@onready var animation:AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation:Sprite2D = $Sprite2D
 @onready var walk_timer:Timer = $WalkTimer
 @onready var shoot_timer:Timer = $ShootTimer
-@onready var detection_ray_left:ShapeCast2D = $RightDetection
-@onready var detection_ray_right:ShapeCast2D = $LeftDetection
+@onready var detection_ray_left:RayCast2D = $RightDetection
+@onready var detection_ray_right:RayCast2D = $LeftDetection
 
 @export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
 
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_walking(delta:float)->void:
-	animation.play("walk")
+	#animation.play("walk")
 	velocity.x = direction * SPEED
 
 func handle_idle(delta: float) -> void:
@@ -70,7 +70,7 @@ func handle_idle(delta: float) -> void:
 			animation.flip_h = false
 
 
-		animation.play("idle")
+		#animation.play("idle")
 		velocity.x = 0
 
 
@@ -104,9 +104,9 @@ func shoot_bullet() -> void:
 func check_player_detection() -> void:
 	var collider = null
 	if detection_ray_right.is_colliding():
-		collider = detection_ray_right.get_collider(0)
+		collider = detection_ray_right.get_collider()
 	if detection_ray_left.is_colliding():
-		collider = detection_ray_left.get_collider(0)
+		collider = detection_ray_left.get_collider()
 	if collider is Player:
 		print("Plauer found")
 		current_state = STATE.ALERT
