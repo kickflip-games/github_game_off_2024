@@ -1,5 +1,9 @@
 name: "build"
 on: push
+  push:
+    branches:
+      - prod  # Only runs on pushes to the 'prod' branch
+
 
 env:
   GODOT_VERSION: 4.3
