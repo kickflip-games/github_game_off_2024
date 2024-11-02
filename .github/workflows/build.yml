@@ -1,8 +1,8 @@
 name: "build"
-on: push
+on:
   push:
     branches:
-      - prod  # Only runs on pushes to the 'prod' branch
+      - prod  # Runs automatically only on 'prod' branch
   workflow_dispatch:  # Allows manual trigger for the workflow
 
 
