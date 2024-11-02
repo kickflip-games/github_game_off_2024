@@ -43,7 +43,7 @@ func handle_idle(delta: float) -> void:
 			animation.play("walk")
 			velocity.x = direction * SPEED
 		else: 
-			animation.play("idle")
+			#animation.play("idle")
 			velocity.x = 0
 		
 
