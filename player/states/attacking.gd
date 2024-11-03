@@ -5,6 +5,9 @@ extends PlayerState
 func handle_input(_event: InputEvent) -> void:
 	if _event is InputEventMouseButton and _event.pressed:
 		attack()
+	if _event is InputEventAction and _event.is_action_pressed("jump"):
+		finished.emit(JUMPING)
+
 
 
 ## Called by the state machine on the engine's main loop tick.
