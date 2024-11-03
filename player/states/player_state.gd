@@ -1,10 +1,7 @@
 class_name PlayerState extends State
 
-const IDLE = "Idle"
-const WALKING = "Walking"
-const JUMPING = "Jumping"
-const FALLING = "Falling"
-const ATTACKING = "Attacking"
+const GROUNDED = "Grounded"
+const AIRBORNE = "Airborne"
 const GRAPPLING = "Grappling"
 const HOOKED = "Hooked"
 
@@ -22,6 +19,23 @@ func _ready() -> void:
 		)
 
 
-## Called by the state machine when receiving unhandled input events.
-func handle_input(_event: InputEvent) -> void:
-	pass
+
+### Some helpers
+	
+func attack_input_pressed(_event: InputEvent)->bool:
+	if _event is InputEventMouseButton and _event.pressed and player.enemies_are_nearby:
+		return true
+	return false
+
+func get_grapple_input_point(_event: InputEvent)->Vector2:
+	var point: Vector2 = Vector2.ZERO
+	if _event is InputEventMouseButton and _event.pressed and !player.enemies_are_nearby:
+		print("Mouse click")
+		point = _event.position - get_viewport().get_visible_rect().size * 0.5
+	return point
+
+
+func mouse_released(_event:InputEvent)->bool:
+	if _event is InputEventMouseButton and not _event.pressed:
+		return true
+	return false
