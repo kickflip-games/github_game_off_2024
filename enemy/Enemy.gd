@@ -34,15 +34,12 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	queue_redraw()
-
 func player_is_visible() -> bool:
 	var collider = null
 	if detection_ray.is_colliding():
 		if detection_ray.get_collider() is Player:
 			return true
 	return false
-
 
 
 func take_damage(knockback_force: Vector2) -> void:
