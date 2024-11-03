@@ -9,6 +9,9 @@ const MAX_SPEED = 2000.0
 const FRICTION_AIR = 0.95
 const FRICTION_GROUND = 0.85
 const CHAIN_PULL = 105.0
+const HOOK_DIRECTION_OFFSET = 0.05				# Vertical offset for the hook direction
+const SWING_FORCE = 50							# Force applied to swing while hooked
+const MAX_HOOK_DISTANCE = 800.0  				# Maximum distance the hook can extend
 
 # Enums for player states
 enum STATE { IDLE, WALKING, JUMPING, FALLING, ATTACKING, HOOKED }
@@ -31,7 +34,14 @@ func _input(event: InputEvent) -> void:
 		if current_state != STATE.ATTACKING and can_attack:
 			attack()
 		
-		chain.shoot(event.position - get_viewport().get_visible_rect().size * 0.5)
+		# Calculate direction to mouse position in world coordinates
+		var target_position = get_global_mouse_position()
+		var direction = (target_position - global_position).normalized()
+		direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
+
+		chain.shoot(direction)
+		# chain.shoot(event.position - get_viewport().get_visible_rect().size * 0.5)
+		
 	elif event is InputEventMouseButton and not event.pressed:
 		chain.release()
 
@@ -81,7 +91,25 @@ func handle_hooked() -> void:
 	chain_velocity.y *= 0.55 if chain_velocity.y > 0.0 else 1.65
 	if sign(chain_velocity.x) != sign(velocity.x):
 		chain_velocity.x *= 0.7
-	velocity += chain_velocity
+
+	# Check the distance and adjust pull force if needed
+	var distance = global_position.distance_to(chain.tip)
+	if distance > MAX_HOOK_DISTANCE / 2 and distance < MAX_HOOK_DISTANCE:
+		chain_velocity *= 0.5
+
+	# Release the hook if reach a max length
+	elif distance > MAX_HOOK_DISTANCE:
+		chain.release()  # Retract the hook
+		return  
+
+	# Swing swing mechanics if hooked
+	if current_state == STATE.HOOKED:
+		if Input.is_action_pressed("move_right"):
+			velocity.x += SWING_FORCE
+		elif Input.is_action_pressed("move_left"):
+			velocity.x -= SWING_FORCE
+
+	velocity += chain_velocity  # Combine chain movement with player's movement
 
 	if !chain.hooked:
 		current_state = STATE.FALLING
