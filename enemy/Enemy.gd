@@ -1,53 +1,48 @@
 extends CharacterBody2D
+class_name Enemy
 
-@onready var animation := $AnimatedSprite2D
-@onready var walk_timer := $Timer
+# Nodes and Scene Variables
+@onready var animation: Sprite2D = $Sprite2D
+@onready var detection_ray: RayCast2D = $DetectionRay
+@export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
 
-enum STATE {IDLE, ATTACK, DEATH}
-var current_state: STATE = STATE.IDLE
 
-const SPEED = 100.0
-const WALK_DURATION: float = 3.0
-const WAIT_DURATION: float = 2.0
+# have to suply this for the enemy to walk.. (pixels per sec)
+@export var walk_speed: float = 10
+@export var idling_time_before_flipping: float = 2.0
+@export var path_follow:PathFollow2D
 
-var is_walking: bool = true
-var direction: int = 1 # 1 is right, -1 is left
+var isDead:bool 
 
-func _ready():
-	pass
 
+var patrollingEnemy:bool:
+	get: return walk_speed > 0 and path_follow!=null
+
+
+var direction: int: # 1 is right, -1 is left
+	get:
+		return -1 if animation.flip_h else 1
+
+
+func flip_direction() -> void:
+	animation.flip_h = !animation.flip_h
+	detection_ray.target_position.x = -1*detection_ray.target_position.x
+
+# Main Processing
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Apply gravity if airborne
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# State handling
-	match current_state:
-		STATE.IDLE:
-			handle_idle(delta)
-			walk_timer.start() # Two second timer
-		STATE.ATTACK:
-			print("Enemy attacks.")
-		STATE.DEATH:
-			print("Enemy dies.")
+func player_is_visible() -> bool:
+	var collider = null
+	if detection_ray.is_colliding():
+		if detection_ray.get_collider() is Player:
+			return true
+	return false
 
-	move_and_slide()
-	
-func handle_idle(delta: float) -> void:
-		if direction == -1:
-			animation.flip_h = true
-		else:
-			animation.flip_h = false
-				
-		if(is_walking):
-			animation.play("walk")
-			velocity.x = direction * SPEED
-		else: 
-			animation.play("idle")
-			velocity.x = 0
-		
 
-	
-
-func _on_timer_timeout() -> void:
-	direction *= -1 # After timer ends, flip direction
+func take_damage(knockback_force: Vector2) -> void:
+	if !isDead:
+		velocity += knockback_force  # Apply knockback to the enemy's velocity
+		isDead = true

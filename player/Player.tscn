@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=15 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://ho25s8ey3tv0" path="res://player/JumpPack_CharacterSpriteSheet.png" id="2_i04hv"]
@@ -75,8 +75,12 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7usrl"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fjcv"]
+size = Vector2(38, 20)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_e20yk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -87,3 +91,14 @@ animation = &"run"
 shape = SubResource("RectangleShape2D_7usrl")
 
 [node name="Chain" parent="." instance=ExtResource("3_pfygb")]
+
+[node name="DetectionArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+shape = SubResource("RectangleShape2D_5fjcv")
+debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
+
+[connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
+[connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

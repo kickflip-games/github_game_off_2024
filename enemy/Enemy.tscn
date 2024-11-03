@@ -1,125 +1,70 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdto1w15bi4i5"]
+[gd_scene load_steps=11 format=3 uid="uid://cdto1w15bi4i5"]
 
 [ext_resource type="Script" path="res://enemy/Enemy.gd" id="1_hngig"]
-[ext_resource type="Texture2D" uid="uid://bif5ytdu674vr" path="res://enemy/idle.png" id="2_sldhb"]
-[ext_resource type="Texture2D" uid="uid://brnjnoxsspghu" path="res://enemy/walk.png" id="3_ur1h8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f28tl"]
-atlas = ExtResource("2_sldhb")
-region = Rect2(0, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wyix5"]
-atlas = ExtResource("2_sldhb")
-region = Rect2(80, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_obs47"]
-atlas = ExtResource("2_sldhb")
-region = Rect2(160, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h3gen"]
-atlas = ExtResource("2_sldhb")
-region = Rect2(240, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rinwc"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(0, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l5wwg"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(80, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpq1b"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(160, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_585fn"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(240, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytmiy"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(320, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2sk4m"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(400, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q22d0"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(480, 0, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0g5hi"]
-atlas = ExtResource("3_ur1h8")
-region = Rect2(560, 0, 80, 80)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6knfa"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f28tl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wyix5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_obs47")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h3gen")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rinwc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l5wwg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wpq1b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_585fn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ytmiy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2sk4m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q22d0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0g5hi")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://c5ysshq28sye7" path="res://enemy/bullet.tscn" id="2_vt85h"]
+[ext_resource type="Texture2D" uid="uid://bt58jaaa78yp8" path="res://enemy/enemy_walk.png" id="3_mxanc"]
+[ext_resource type="Script" path="res://enemy/states/enemy_state_machine.gd" id="4_a5bpu"]
+[ext_resource type="Script" path="res://enemy/states/patrol.gd" id="5_45la2"]
+[ext_resource type="Script" path="res://enemy/states/alerted.gd" id="6_b6xva"]
+[ext_resource type="Script" path="res://enemy/states/death.gd" id="6_yueuv"]
+[ext_resource type="Script" path="res://enemy/states/idle.gd" id="9_hoqif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8saf"]
-size = Vector2(33.5, 42)
+size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojq0x"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_hngig")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(15, 21)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_6knfa")
-animation = &"idle"
+bullet_scene = ExtResource("2_vt85h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16.25, 22)
 shape = SubResource("RectangleShape2D_j8saf")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="DetectionRay" type="RayCast2D" parent="."]
+position = Vector2(0, 6.86)
+target_position = Vector2(200, 0)
+collision_mask = 4
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2.18)
+texture = ExtResource("3_mxanc")
+region_enabled = true
+region_rect = Rect2(32, 24, 16, 24)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_ojq0x")
+debug_color = Color(0.572292, 0.548718, 0.242245, 0.42)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_a5bpu")
+initial_state = NodePath("Idle")
+
+[node name="Patrol" type="Node" parent="StateMachine"]
+script = ExtResource("5_45la2")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("6_yueuv")
+
+[node name="DeathTimer" type="Timer" parent="StateMachine/Death"]
+one_shot = true
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_hoqif")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+autostart = true
+
+[node name="Alerted" type="Node" parent="StateMachine"]
+script = ExtResource("6_b6xva")
+
+[node name="ShootTimer" type="Timer" parent="StateMachine/Alerted"]
+
+[connection signal="timeout" from="StateMachine/Death/DeathTimer" to="StateMachine/Death" method="_on_death_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Alerted/ShootTimer" to="StateMachine/Alerted" method="_on_shoot_timer_timeout"]

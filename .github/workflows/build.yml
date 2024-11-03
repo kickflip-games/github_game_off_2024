@@ -1,5 +1,11 @@
 name: "build"
-on: push
+on:
+  push:
+    branches:
+      - prod  # Runs automatically only on 'prod' branch
+  workflow_dispatch:  # Allows manual trigger for the workflow
+
+
 
 env:
   GODOT_VERSION: 4.3
