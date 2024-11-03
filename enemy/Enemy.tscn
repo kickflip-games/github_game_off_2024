@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemy/Enemy.gd" id="1_hngig"]
 [ext_resource type="PackedScene" uid="uid://c5ysshq28sye7" path="res://enemy/bullet.tscn" id="2_vt85h"]
 [ext_resource type="Texture2D" uid="uid://bt58jaaa78yp8" path="res://enemy/enemy_walk.png" id="3_mxanc"]
-[ext_resource type="Script" path="res://enemy/states/enemy_state_machine.gd" id="4_a5bpu"]
+[ext_resource type="Script" path="res://common/state_machine.gd" id="4_5eae6"]
 [ext_resource type="Script" path="res://enemy/states/patrol.gd" id="5_45la2"]
 [ext_resource type="Script" path="res://enemy/states/alerted.gd" id="6_b6xva"]
 [ext_resource type="Script" path="res://enemy/states/death.gd" id="6_yueuv"]
@@ -42,8 +42,14 @@ shape = SubResource("RectangleShape2D_ojq0x")
 debug_color = Color(0.572292, 0.548718, 0.242245, 0.42)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_a5bpu")
+script = ExtResource("4_5eae6")
 initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_hoqif")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+autostart = true
 
 [node name="Patrol" type="Node" parent="StateMachine"]
 script = ExtResource("5_45la2")
@@ -54,17 +60,11 @@ script = ExtResource("6_yueuv")
 [node name="DeathTimer" type="Timer" parent="StateMachine/Death"]
 one_shot = true
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("9_hoqif")
-
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
-autostart = true
-
 [node name="Alerted" type="Node" parent="StateMachine"]
 script = ExtResource("6_b6xva")
 
 [node name="ShootTimer" type="Timer" parent="StateMachine/Alerted"]
 
-[connection signal="timeout" from="StateMachine/Death/DeathTimer" to="StateMachine/Death" method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Death/DeathTimer" to="StateMachine/Death" method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Alerted/ShootTimer" to="StateMachine/Alerted" method="_on_shoot_timer_timeout"]

@@ -949,6 +949,7 @@ tween_resource = SubResource("Resource_h5gmi")
 draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
 position = Vector2(19, -9)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
