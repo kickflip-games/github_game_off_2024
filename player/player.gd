@@ -14,7 +14,7 @@ const SWING_FORCE = 50							# Force applied to swing while hooked
 const MAX_HOOK_DISTANCE = 800.0  				# Maximum distance the hook can extend
 
 # Enums for player states
-enum STATE { IDLE, WALKING, JUMPING, FALLING, ATTACKING, HOOKED }
+enum STATE { IDLE, WALKING, JUMPING, FALLING, ATTACKING, HOOKED, AT_HOOK_TIP }
 var current_state: STATE = STATE.IDLE
 
 # Variables
@@ -92,10 +92,14 @@ func handle_hooked() -> void:
 	if sign(chain_velocity.x) != sign(velocity.x):
 		chain_velocity.x *= 0.7
 
-	# Check the distance and adjust pull force if needed
+	# Dampen the chain velocity based on distance
 	var distance = global_position.distance_to(chain.tip)
 	if distance > MAX_HOOK_DISTANCE / 2 and distance < MAX_HOOK_DISTANCE:
-		chain_velocity *= 0.5
+		# Calculate a damping factor
+		var damping_factor = (MAX_HOOK_DISTANCE - distance) / (MAX_HOOK_DISTANCE / 2)
+
+		chain_velocity.x *= damping_factor
+		chain_velocity.x *= damping_factor
 
 	# Release the hook if reach a max length
 	elif distance > MAX_HOOK_DISTANCE:
