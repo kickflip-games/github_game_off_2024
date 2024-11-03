@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://e8ko2xfqww1h" path="res://player/grappling_hook/tip.svg" id="3_s3fin"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hb2xo"]
-radius = 5.0
+radius = 2.0
+height = 8.0
 
 [node name="GrapplingHook" type="Node2D"]
 script = ExtResource("1_c708d")
@@ -26,6 +27,7 @@ collision_layer = 2
 motion_mode = 1
 
 [node name="Hook" type="Sprite2D" parent="Tip"]
+texture_filter = 3
 texture = ExtResource("3_s3fin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
