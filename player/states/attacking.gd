@@ -1,9 +1,10 @@
-## Virtual base class for all states.
-## Extend this class and override its methods to implement a state.
-class_name State extends Node
+extends PlayerState
 
-## Emitted when the state finishes and wants to transition to another state.
-signal finished(next_state_path: String, data: Dictionary)
+
+
+func handle_input(_event: InputEvent) -> void:
+	if _event is InputEventMouseButton and _event.pressed:
+		attack()
 
 
 ## Called by the state machine on the engine's main loop tick.
@@ -23,3 +24,13 @@ func enter(previous_state_path: String, data := {}) -> void:
 ## to clean up the state.
 func exit() -> void:
 	pass
+
+
+# Attack all nearby enemies with knockback
+# TODO: add a coldown for attack? i guess i shouldnbt be able to spam..
+func attack() -> void:
+	for enemy in player.nearby_enemies:
+		if enemy:
+			var knockback_force = 3000
+			var direction = (enemy.global_position - player.global_position).normalized()
+			enemy.take_damage(direction * knockback_force)

@@ -1,9 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=31 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
 [ext_resource type="PackedScene" uid="uid://d0jsi5texctsy" path="res://player/grappling_hook/grappling_hook.tscn" id="3_pfygb"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_qhyha"]
+[ext_resource type="Script" path="res://player/states/idle.gd" id="5_rvt0a"]
+[ext_resource type="Script" path="res://player/states/walking.gd" id="6_n6jio"]
+[ext_resource type="Script" path="res://player/states/jumping.gd" id="7_jw2qu"]
+[ext_resource type="Script" path="res://player/states/falling.gd" id="8_c5cgj"]
+[ext_resource type="Script" path="res://player/states/attacking.gd" id="9_d3pbd"]
+[ext_resource type="Script" path="res://player/states/grappling.gd" id="10_4nvv2"]
+[ext_resource type="Script" path="res://player/states/hooked.gd" id="11_1b373"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnrin"]
 atlas = ExtResource("2_0o3qo")
@@ -164,6 +171,27 @@ debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_qhyha")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_rvt0a")
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource("6_n6jio")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("7_jw2qu")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("8_c5cgj")
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("9_d3pbd")
+
+[node name="Grappling" type="Node" parent="StateMachine"]
+script = ExtResource("10_4nvv2")
+
+[node name="Hooked" type="Node" parent="StateMachine"]
+script = ExtResource("11_1b373")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

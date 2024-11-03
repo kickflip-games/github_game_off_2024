@@ -20,3 +20,8 @@ func _ready() -> void:
 		"The Player state type must be used only in the player scene. 
 		It needs the owner to be a Player node."
 		)
+
+
+## Called by the state machine when receiving unhandled input events.
+func handle_input(_event: InputEvent) -> void:
+	pass
