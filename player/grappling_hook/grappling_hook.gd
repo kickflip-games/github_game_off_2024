@@ -10,8 +10,9 @@ var flying: bool = false                        # Whether the chain is moving th
 var hooked: bool = false                        # Whether the chain has connected to a wall
 
 # shoot() shoots the chain in a given direction
-func shoot(target: Vector2) -> void:
-	direction = (target - global_position).normalized()
+func shoot(_direction: Vector2) -> void:
+	# direction = (target - global_position).normalized()
+	self.direction = _direction 
 	flying = true
 	tip = global_position                   # Reset tip position to the player's current position
 
