@@ -23,8 +23,6 @@ func physics_update(_delta: float) -> void:
 	
 func move_along_path(_delta: float) -> void:
 	# Update the offset based on speed and direction
-	
-	
 	if enemy.direction > 0 and enemy.path_follow.progress_ratio == 0:
 		finished.emit(IDLE)
 	elif enemy.direction < 0 and enemy.path_follow.progress_ratio == 1:

@@ -883,7 +883,7 @@ sources/0 = SubResource("TileSetAtlasSource_0j48y")
 
 [sub_resource type="Curve2D" id="Curve2D_r1w2t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -195, 77, 0, 0, 0, 0, 8, 78)
+"points": PackedVector2Array(0, 0, 0, 0, -195, 77, 0, 0, 0, 0, -65, 77)
 }
 point_count = 2
 
@@ -908,7 +908,6 @@ curve = SubResource("Curve2D_r1w2t")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(-195, 77)
-rotation = 0.00492607
 
 [node name="Enemy" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wsq0d")]
 position = Vector2(2.99997, -0.0147781)
