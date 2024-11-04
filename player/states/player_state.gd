@@ -17,5 +17,3 @@ func _ready() -> void:
 		"The Player state type must be used only in the player scene. 
 		It needs the owner to be a Player node."
 		)
-
-
