@@ -9,7 +9,7 @@ signal finished(next_state_path: String, data: Dictionary)
 func handle_input(_event: InputEvent) -> void:
 	pass
 
-
+	
 ## Called by the state machine on the engine's main loop tick.
 func update(_delta: float) -> void:
 	pass
