@@ -1,7 +1,7 @@
 class_name StateMachine extends Node2D
 
 @export var initial_state: State = null
-@export var debug:bool = false
+
 
 @onready var state: State = (func get_initial_state() -> State:
 	return initial_state if initial_state != null else get_child(0)
@@ -29,7 +29,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
-	queue_redraw()
 
 
 func _physics_process(delta: float) -> void:
@@ -45,10 +44,18 @@ func _transition_to_next_state(target_state_path: String, data: Dictionary = {})
 	state.exit()
 	state = get_node(target_state_path)
 	state.enter(previous_state_path, data)
+	queue_redraw()
+
+
+func _input(event):
+	if Input.is_action_just_pressed("debug"):
+		queue_redraw()
+
+
 
 
 func _draw():
-	if debug:
+	if GameManager.DEBUG_MODE:
 		var text_position = Vector2(10, 10)
 		var text = "State: " + state.name
 

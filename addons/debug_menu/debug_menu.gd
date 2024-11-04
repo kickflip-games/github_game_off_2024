@@ -89,6 +89,7 @@ func _init() -> void:
 		var event := InputEventKey.new()
 		event.keycode = KEY_F3
 		InputMap.action_add_event("cycle_debug_menu", event)
+		
 
 
 func _ready() -> void:
@@ -133,6 +134,8 @@ func _ready() -> void:
 			update_information_label()
 			update_settings_label()
 	)
+
+
 
 
 func _input(event: InputEvent) -> void:

@@ -154,7 +154,6 @@ position = Vector2(0.5, -2.5)
 shape = SubResource("RectangleShape2D_7usrl")
 
 [node name="Chain" parent="." instance=ExtResource("3_pfygb")]
-visible = false
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -168,7 +167,6 @@ debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qhyha")
 initial_state = NodePath("Grounded")
-debug = true
 
 [node name="Grounded" type="Node" parent="StateMachine"]
 script = ExtResource("5_rvt0a")
