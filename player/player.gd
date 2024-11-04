@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 # Constants
-const JUMP_FORCE = 1550.0
+const JUMP_FORCE = 550.0
 const MOVE_SPEED = 500.0
 const GRAVITY = 60.0
 const MAX_SPEED = 2000.0
@@ -65,7 +65,6 @@ func take_damage():
 
 func attack_input_pressed(_event: InputEvent)->bool:
 	if _event is InputEventMouseButton:
-		print("MOUSEE")
 		if _event.is_pressed() and enemies_are_nearby:  # Mouse button down.
 			return true
 	return false

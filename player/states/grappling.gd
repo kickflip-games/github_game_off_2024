@@ -17,7 +17,6 @@ var distance_to_tip:float:
 
 
 func handle_input(_event: InputEvent) -> void:
-	print("grappling event: ", _event)
 	if player.mouse_released(_event):
 		release_chain_and_transition_state()
 
