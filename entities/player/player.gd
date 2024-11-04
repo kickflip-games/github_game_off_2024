@@ -21,7 +21,7 @@ var can_jump: bool = false
 var nearby_enemies: Array = []
 var gravity_scale: float = GRAVITY / ProjectSettings.get("physics/2d/default_gravity")
 var can_attack:bool = true
-var isDead:bool = true
+var isDead:bool = false
 
 
 @onready var chain = $Chain
@@ -32,7 +32,7 @@ var isDead:bool = true
 func attack() -> void:
 	for enemy in nearby_enemies:
 		if enemy:
-			var knockback_force = 3000
+			var knockback_force = 5000
 			var direction = (enemy.global_position - global_position).normalized()
 			enemy.take_damage(direction * knockback_force)
 
@@ -52,6 +52,7 @@ var enemies_are_nearby:bool:
 
 
 func take_damage():
+	print("Take damage")
 	if !isDead:
 		isDead = true
 		GameManager.GameOver()

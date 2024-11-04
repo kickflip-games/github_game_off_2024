@@ -1,13 +1,13 @@
 [gd_scene load_steps=28 format=3 uid="uid://d3y8x2rfc7rly"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_e20yk"]
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
-[ext_resource type="PackedScene" uid="uid://d0jsi5texctsy" path="res://player/grappling_hook/grappling_hook.tscn" id="3_pfygb"]
+[ext_resource type="PackedScene" uid="uid://d0jsi5texctsy" path="res://entities/player/grappling_hook/grappling_hook.tscn" id="3_pfygb"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_qhyha"]
-[ext_resource type="Script" path="res://player/states/grounded.gd" id="5_rvt0a"]
-[ext_resource type="Script" path="res://player/states/airborne.gd" id="7_jw2qu"]
+[ext_resource type="Script" path="res://entities/player/states/grounded.gd" id="5_rvt0a"]
+[ext_resource type="Script" path="res://entities/player/states/airborne.gd" id="7_jw2qu"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_fmr7d"]
-[ext_resource type="Script" path="res://player/states/grappling.gd" id="10_4nvv2"]
+[ext_resource type="Script" path="res://entities/player/states/grappling.gd" id="10_4nvv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnrin"]
 atlas = ExtResource("2_0o3qo")
@@ -167,7 +167,7 @@ shape = SubResource("RectangleShape2D_7usrl")
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
 position = Vector2(0, -2.5)

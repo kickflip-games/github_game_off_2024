@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=4 uid="uid://s1jp48cdvl6h"]
 
-[ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://enemy/Enemy.tscn" id="1_wsq0d"]
+[ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://entities/enemy/Enemy.tscn" id="1_wsq0d"]
 [ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="2_uv27r"]
-[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="3_47bpa"]
+[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://entities/player/Player.tscn" id="3_47bpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0j48y"]
 texture = ExtResource("2_uv27r")

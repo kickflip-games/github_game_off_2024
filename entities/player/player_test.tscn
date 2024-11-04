@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://biauqi1sgke8e"]
 
 [ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="1_02x6x"]
-[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="2_48oyc"]
+[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://entities/player/Player.tscn" id="2_48oyc"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_ndgsf"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sbymg"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_ee2sf"]

@@ -9,6 +9,7 @@ extends Area2D
 func _ready():
 	timer.autostart = true
 	timer.wait_time = lifetime
+	set_as_top_level(true)
 
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +19,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body):
+	print("bullet entered ", body.name)
 	if body is Player:  # Assuming the player is added to a group named "Player"
 		body.take_damage()
 	queue_free()  # Remove the bullet after collision
