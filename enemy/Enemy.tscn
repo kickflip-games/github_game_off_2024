@@ -41,7 +41,7 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_ojq0x")
 debug_color = Color(0.572292, 0.548718, 0.242245, 0.42)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_5eae6")
 initial_state = NodePath("Idle")
 

@@ -18,8 +18,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body):
-	if body.is_in_group("Player"):  # Assuming the player is added to a group named "Player"
-		GameManager.GameOver()
+	if body is Player:  # Assuming the player is added to a group named "Player"
+		body.take_damage()
 	queue_free()  # Remove the bullet after collision
 
 

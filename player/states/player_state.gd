@@ -1,10 +1,7 @@
 class_name PlayerState extends State
 
-const IDLE = "Idle"
-const WALKING = "Walking"
-const JUMPING = "Jumping"
-const FALLING = "Falling"
-const ATTACKING = "Attacking"
+const GROUNDED = "Grounded"
+const AIRBORNE = "Airborne"
 const GRAPPLING = "Grappling"
 const HOOKED = "Hooked"
 
@@ -20,3 +17,5 @@ func _ready() -> void:
 		"The Player state type must be used only in the player scene. 
 		It needs the owner to be a Player node."
 		)
+
+
