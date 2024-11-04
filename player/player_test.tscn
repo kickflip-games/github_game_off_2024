@@ -913,7 +913,7 @@ draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(19, -9)
+position = Vector2(17.4167, -8.25)
 zoom = Vector2(0.79, 1.52)
 editor_draw_limits = true
 

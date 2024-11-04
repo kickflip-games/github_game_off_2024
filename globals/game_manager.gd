@@ -1,6 +1,8 @@
 extends Node
 
 var DEBUG_MODE:bool = true
+var ON_MOBILE:bool 
+
 
 
 
@@ -21,7 +23,11 @@ func _input(event):
 		
 
 func _ready():
+	ON_MOBILE = OS.has_feature("web_android") or OS.has_feature("web_ios")
 	_set_debug_menu()
+	await SceneManager.scene_loaded
+	DebugMenu.update_information_label()
+	DebugMenu.update_settings_label()
 
 func _set_debug_menu():
 	if DEBUG_MODE:

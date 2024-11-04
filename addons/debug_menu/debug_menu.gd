@@ -289,6 +289,10 @@ func update_information_label() -> void:
 			graphics_api_string = "OpenGL ES"
 		elif OS.has_feature("web"):
 			graphics_api_string = "WebGL"
+			if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+				graphics_api_string = "WebGL-MOBILE"
+			else:
+				graphics_api_string = "WebGL-DESKTOP"
 		elif rendering_driver == "opengl3":
 			graphics_api_string = "OpenGL"
 
