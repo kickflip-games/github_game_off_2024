@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dahynuukgfg76"]
 
-[ext_resource type="Texture2D" uid="uid://c4ojtah20jtxc" path="res://addons/godot_state_charts/atomic_state.svg" id="1_iwpyt"]
 [ext_resource type="Script" path="res://goal/goal.gd" id="1_kyx3u"]
+[ext_resource type="Texture2D" uid="uid://d4nxo4yq5t07b" path="res://icon.svg" id="2_arn2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckkx1"]
 
@@ -14,6 +14,8 @@ script = ExtResource("1_kyx3u")
 shape = SubResource("RectangleShape2D_ckkx1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_iwpyt")
+position = Vector2(0, 1)
+scale = Vector2(0.132812, 0.132812)
+texture = ExtResource("2_arn2e")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

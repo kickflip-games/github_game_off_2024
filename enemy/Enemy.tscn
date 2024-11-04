@@ -168,7 +168,17 @@ texture = ExtResource("3_mxanc")
 region_enabled = true
 region_rect = Rect2(32, 24, 16, 24)
 
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_ojq0x")
+debug_color = Color(0.572292, 0.548718, 0.242245, 0.42)
+
 script = ExtResource("4_5eae6")
 initial_state = NodePath("Idle")
 

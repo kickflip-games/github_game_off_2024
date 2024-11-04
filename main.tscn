@@ -932,14 +932,26 @@ walk_speed = 40.0
 path_follow = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(19, -9)
+position = Vector2(20, -8)
 script = ExtResource("3_qyrwg")
 follow_mode = 5
 follow_target = NodePath("../Player")
+zoom = Vector2(2, 2)
 tween_resource = SubResource("Resource_h5gmi")
+follow_offset = Vector2(1, 1)
+follow_damping = true
+dead_zone_width = 0.2
+dead_zone_height = 0.2
+show_viewfinder_in_play = true
 draw_limits = true
 
+
 [node name="Enemies" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(20, -8)
+zoom = Vector2(2, 2)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("6_pyw4a")]
 position = Vector2(694, -225)
