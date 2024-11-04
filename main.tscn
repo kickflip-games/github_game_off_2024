@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://liwr5msxs8jp"]
+[gd_scene load_steps=14 format=4 uid="uid://liwr5msxs8jp"]
 
 [ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="1_jw4jp"]
-[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="2_hjk1k"]
+[ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://entities/player/Player.tscn" id="2_hjk1k"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_qyrwg"]
-[ext_resource type="PackedScene" uid="uid://dahynuukgfg76" path="res://goal/goal.tscn" id="4_4u3ub"]
+[ext_resource type="PackedScene" uid="uid://dahynuukgfg76" path="res://entities/goal/goal.tscn" id="4_4u3ub"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_qwch8"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_ybg0b"]
-[ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://enemy/Enemy.tscn" id="6_pyw4a"]
+[ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://entities/enemy/Enemy.tscn" id="6_pyw4a"]
+[ext_resource type="Script" path="res://entities/killzone/killzone.gd" id="8_tjbcs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hwv5"]
 texture = ExtResource("1_jw4jp")
@@ -897,6 +898,8 @@ duration = 1.0
 transition = 0
 ease = 2
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gmq3k"]
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -963,3 +966,13 @@ zoom = Vector2(2, 2)
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("5_ybg0b")
+
+[node name="Killzone" type="Area2D" parent="."]
+position = Vector2(8, 308)
+collision_mask = 4
+script = ExtResource("8_tjbcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_gmq3k")
+
+[connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]

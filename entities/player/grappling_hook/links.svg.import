@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt58jaaa78yp8"
-path="res://.godot/imported/enemy_walk.png-d02e8c926d686e32a60fa92a8db12a25.ctex"
+uid="uid://ne3le6pt7kca"
+path="res://.godot/imported/links.svg-f0cb10cd67fabdf217e245bba82ec0f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/enemy_walk.png"
-dest_files=["res://.godot/imported/enemy_walk.png-d02e8c926d686e32a60fa92a8db12a25.ctex"]
+source_file="res://entities/player/grappling_hook/links.svg"
+dest_files=["res://.godot/imported/links.svg-f0cb10cd67fabdf217e245bba82ec0f3.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

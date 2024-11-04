@@ -8,7 +8,7 @@ func shoot_bullet() -> void:
 	if enemy.bullet_scene:
 		can_shoot = false
 		var bullet_instance = enemy.bullet_scene.instantiate() as Node2D
-		get_parent().add_child(bullet_instance)
+		enemy.get_parent().add_child(bullet_instance)
 		bullet_instance.position = enemy.global_position
 		bullet_instance.direction = Vector2.RIGHT if enemy.direction > 0 else Vector2.LEFT
 
