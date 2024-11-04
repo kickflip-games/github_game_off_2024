@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://liwr5msxs8jp"]
+[gd_scene load_steps=13 format=4 uid="uid://liwr5msxs8jp"]
 
 [ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="1_jw4jp"]
 [ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://player/Player.tscn" id="2_hjk1k"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_qyrwg"]
 [ext_resource type="PackedScene" uid="uid://dahynuukgfg76" path="res://goal/goal.tscn" id="4_4u3ub"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_qwch8"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_ybg0b"]
 [ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://enemy/Enemy.tscn" id="6_pyw4a"]
+[ext_resource type="PackedScene" uid="uid://b32f3vwnl1812" path="res://addons/killzone/killzone.tscn" id="7_rdrm3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hwv5"]
 texture = ExtResource("1_jw4jp")
@@ -897,6 +897,8 @@ duration = 1.0
 transition = 0
 ease = 2
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bgeiw"]
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -908,12 +910,13 @@ tile_set = SubResource("TileSet_ft1ys")
 position = Vector2(19, -9)
 collision_mask = 1
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+physics_interpolation_mode = 1
+limit_bottom = 250
+limit_smoothed = true
+
 [node name="Goal" parent="." instance=ExtResource("4_4u3ub")]
 position = Vector2(1493, -25)
-
-[node name="Enemy" parent="." instance=ExtResource("6_pyw4a")]
-position = Vector2(567, -11)
-walk_speed = 0.0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_gnl3o")
@@ -928,18 +931,6 @@ rotation = -3.1397
 walk_speed = 40.0
 path_follow = NodePath("..")
 
-[node name="Enemy3" parent="." instance=ExtResource("6_pyw4a")]
-position = Vector2(694, -225)
-walk_speed = 0.0
-
-[node name="Enemy4" parent="." instance=ExtResource("6_pyw4a")]
-position = Vector2(1082, -221)
-walk_speed = 0.0
-
-[node name="Enemy5" parent="." instance=ExtResource("6_pyw4a")]
-position = Vector2(1245, -380)
-walk_speed = 0.0
-
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 position = Vector2(19, -9)
 script = ExtResource("3_qyrwg")
@@ -948,11 +939,27 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_h5gmi")
 draw_limits = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-position = Vector2(19, -9)
+[node name="Enemies" type="Node" parent="."]
 
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("5_ybg0b")
+[node name="Enemy3" parent="Enemies" instance=ExtResource("6_pyw4a")]
+position = Vector2(694, -225)
+walk_speed = 0.0
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("6_pyw4a")]
+position = Vector2(1082, -221)
+walk_speed = 0.0
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("6_pyw4a")]
+position = Vector2(1245, -380)
+walk_speed = 0.0
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("6_pyw4a")]
+position = Vector2(567, -11)
+walk_speed = 0.0
+
+[node name="Killzone" parent="." instance=ExtResource("7_rdrm3")]
+position = Vector2(-408, 180)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_bgeiw")
