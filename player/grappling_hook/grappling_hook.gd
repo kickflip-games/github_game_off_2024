@@ -11,8 +11,8 @@ var hooked: bool = false                        # Whether the chain has connecte
 
 # shoot() shoots the chain in a given direction
 func shoot(_direction: Vector2) -> void:
-	# direction = (target - global_position).normalized()
 	self.direction = _direction
+	
 	flying = true
 	tip = global_position                   # Reset tip position to the player's current position
 
@@ -42,6 +42,7 @@ func _physics_process(_delta: float) -> void:
 
 	if flying:
 		var collision = $Tip.move_and_collide(direction * SPEED)
+		
 		if collision:
 			hooked = true                       # If we hit something, we're hooked
 			flying = false

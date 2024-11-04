@@ -33,11 +33,11 @@ func release_chain_and_transition_state():
 func physics_update(_delta: float) -> void:
 	var input_direction_x := Input.get_axis("move_left", "move_right")
 	
-	
 	chain_velocity =  chain_direction * -player.CHAIN_PULL
 	chain_velocity.y *= 0.55 if chain_velocity.y > 0.0 else 1.65
 	
 	var d:float = distance_to_tip
+	
 	if d > player.MAX_HOOK_DISTANCE:
 		release_chain_and_transition_state()
 		return 
@@ -49,16 +49,17 @@ func physics_update(_delta: float) -> void:
 	elif d <= player.AT_HOOK_TIP_DISTANCE:
 		# Dampen only if not wanting to swing
 		if input_direction_x ==0:
-			player.velocity *= 0.75
+			player.velocity *= 0.1
 	
 	if input_direction_x !=0:
 		player.velocity.x +=  sign(input_direction_x)*  player.SWING_FORCE
 
+		
+	if player.chain.hooked:
+		player.velocity += chain_velocity
+		player.velocity = player.velocity.limit_length(player.MAX_SPEED)
+		player.move_and_slide()
 	
-	player.velocity += chain_velocity
-	player.velocity = player.velocity.limit_length(player.MAX_SPEED)
-	player.move_and_slide()
-
 
 
 ## Called by the state machine upon changing the active state. The `data` parameter
