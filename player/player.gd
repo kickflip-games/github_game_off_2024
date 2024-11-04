@@ -13,10 +13,6 @@ const HOOK_DIRECTION_OFFSET = 0.05				# Vertical offset for the hook direction
 const SWING_FORCE = 50							# Force applied to swing while hooked
 const MAX_HOOK_DISTANCE = 800.0  				# Maximum distance the hook can extend
 const AT_HOOK_TIP_DISTANCE = 10					# Threshold to dampen when close to the tip
-
-# Enums for player states
-enum STATE { IDLE, WALKING, JUMPING, FALLING, ATTACKING, HOOKED, AT_HOOK_TIP }
-var current_state: STATE = STATE.IDLE
 const MIN_GRAPPLE_DIST = 0.1
 
 # Variables
@@ -29,102 +25,6 @@ var isDead:bool = true
 
 
 @onready var chain = $Chain
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		if current_state != STATE.ATTACKING and can_attack:
-			attack()
-
-		# Calculate direction to mouse position in world coordinates
-		var target_position = get_global_mouse_position()
-		var direction = (target_position - global_position).normalized()
-		direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
-
-		chain.shoot(direction)
-		# chain.shoot(event.position - get_viewport().get_visible_rect().size * 0.5)
-
-	elif event is InputEventMouseButton and not event.pressed:
-		chain.release()
-
-func _physics_process(delta: float) -> void:
-	# State Machine
-	match current_state:
-		STATE.IDLE, STATE.WALKING, STATE.JUMPING, STATE.FALLING:
-			handle_movement()
-		STATE.ATTACKING:
-			handle_attacking()
-		STATE.HOOKED:
-			handle_hooked()
-
-	apply_gravity()
-	move_and_slide()
-
-	# Update state based on conditions
-	update_state()
-
-# Handle movement and input
-func handle_movement() -> void:
-	var walk_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	velocity.x = walk_input * MOVE_SPEED
-
-	# Apply friction based on whether grounded or airborne
-	if is_on_floor():
-		velocity.x *= FRICTION_GROUND
-	else:
-		velocity.x *= FRICTION_AIR
-
-	# Apply jump force if jump is pressed
-	if Input.is_action_just_pressed("jump") and can_jump:
-		can_jump = false
-		velocity.y = -JUMP_FORCE
-		current_state = STATE.JUMPING
-
-	# Limit velocity to prevent exceeding maximum speed
-	velocity = velocity.limit_length(MAX_SPEED)
-
-# Apply gravity if not hooked
-func apply_gravity() -> void:
-	if !chain.hooked:
-		velocity.y += GRAVITY
-
-func handle_hooked() -> void:
-	chain_velocity = (global_position - chain.tip).normalized() * -CHAIN_PULL
-	chain_velocity.y *= 0.55 if chain_velocity.y > 0.0 else 1.65
-	# if sign(chain_velocity.x) != sign(velocity.x):
-	# 	chain_velocity.x *= 0.7
-
-	# check distance of player to hook tip
-	var distance = global_position.distance_to(chain.tip)
-
-	# Dampen the chain velocity based on distance
-	if distance > MAX_HOOK_DISTANCE / 2 and distance < MAX_HOOK_DISTANCE:
-		var damping_factor = (MAX_HOOK_DISTANCE - distance) / (MAX_HOOK_DISTANCE / 2)
-		chain_velocity.x *= damping_factor
-		chain_velocity.x *= damping_factor
-
-	# Release the hook if reach a max length
-	elif distance > MAX_HOOK_DISTANCE:
-		chain.release()  # Retract the hook
-		return
-
-	# Dampen oscillation when close to the tip
-	elif distance <= AT_HOOK_TIP_DISTANCE:
-		# Dampen only if not wanting to swing
-		if !Input.is_action_pressed("move_right") and !Input.is_action_pressed("move_left"):
-			velocity *= 0.75
-
-	# Swing swing mechanics if hooked
-	if current_state == STATE.HOOKED:
-		if Input.is_action_pressed("move_right"):
-			velocity.x += SWING_FORCE
-		elif Input.is_action_pressed("move_left"):
-			velocity.x -= SWING_FORCE
-
-	velocity += chain_velocity  # Combine chain movement with player's movement
-
-	if !chain.hooked:
-		current_state = STATE.FALLING
 
 
 
@@ -156,3 +56,33 @@ func take_damage():
 		isDead = true
 		GameManager.GameOver()
 
+
+
+
+#### INPUT HELPERS ####
+# Maybe these should be in the PlayerState.gd script?
+
+
+func attack_input_pressed(_event: InputEvent)->bool:
+	if _event is InputEventMouseButton:
+		print("MOUSEE")
+		if _event.is_pressed() and enemies_are_nearby:  # Mouse button down.
+			return true
+	return false
+
+
+func get_grapple_input_vector(_event: InputEvent)->Vector2:
+	var direction: Vector2 = Vector2.ZERO
+	if _event is InputEventMouseButton:
+		if _event.is_pressed() and  !enemies_are_nearby: # Mouse button down
+			var target_position = get_global_mouse_position()
+			direction = (target_position - global_position).normalized()
+			direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
+	return direction
+
+
+func mouse_released(_event:InputEvent)->bool:
+	if _event is InputEventMouseButton:
+			if _event.is_released():
+				return true
+	return false
