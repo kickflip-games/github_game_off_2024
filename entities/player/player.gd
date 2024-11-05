@@ -14,12 +14,13 @@ const SWING_FORCE = 50							# Force applied to swing while hooked
 const MAX_HOOK_DISTANCE = 800.0  				# Maximum distance the hook can extend
 const AT_HOOK_TIP_DISTANCE = 10					# Threshold to dampen when close to the tip
 const MIN_GRAPPLE_DIST = 0.1
+const ATTACK_FORCE = 500
+
 
 # Variables
 var chain_velocity: Vector2 = Vector2.ZERO
 var can_jump: bool = false
 var nearby_enemies: Array = []
-var gravity_scale: float = GRAVITY / ProjectSettings.get("physics/2d/default_gravity")
 var can_attack:bool = true
 var isDead:bool = false
 
@@ -32,9 +33,8 @@ var isDead:bool = false
 func attack() -> void:
 	for enemy in nearby_enemies:
 		if enemy:
-			var knockback_force = 5000
 			var direction = (enemy.global_position - global_position).normalized()
-			enemy.take_damage(direction * knockback_force)
+			enemy.take_damage(direction * ATTACK_FORCE)
 
 # Detection area signals
 func _on_detection_area_2d_body_entered(body):

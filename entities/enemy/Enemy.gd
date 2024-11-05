@@ -20,19 +20,13 @@ var patrollingEnemy:bool:
 
 
 var direction: int: # 1 is right, -1 is left
-	get:
-		return -1 if animation.flip_h else 1
+	get: return -1 if animation.flip_h else 1
 
 
 func flip_direction() -> void:
 	animation.flip_h = !animation.flip_h
 	detection_ray.target_position.x = -1*detection_ray.target_position.x
 
-# Main Processing
-func _physics_process(delta: float) -> void:
-	# Apply gravity if airborne
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 
 func player_is_visible() -> bool:
 	var collider = null
