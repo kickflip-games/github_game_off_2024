@@ -22,6 +22,7 @@ func update(_delta: float) -> void:
 		finished.emit(ALERTED)
 	if enemy.isDead:
 		finished.emit(DEATH)
+		
 
 
 func exit() -> void:

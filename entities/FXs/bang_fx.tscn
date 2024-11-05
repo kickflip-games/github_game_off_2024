@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvjp5qlfhxtba"]
+
+[ext_resource type="Texture2D" uid="uid://clmux884snq6y" path="res://art/bang.png" id="1_gv3tg"]
+
+[sub_resource type="Curve" id="Curve_6ixcr"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.37848, 3.89407), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_uvox0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0433619, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="BangFx" type="CPUParticles2D"]
+top_level = true
+scale = Vector2(0.05, 0.05)
+emitting = false
+amount = 1
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.07
+randomness = 1.0
+local_coords = true
+texture = ExtResource("1_gv3tg")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(-1, 1)
+gravity = Vector2(0, 0)
+initial_velocity_max = 5.2
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+linear_accel_min = 0.1
+linear_accel_max = 2.0
+radial_accel_min = 0.1
+radial_accel_max = 3.0
+angle_min = -10.0
+angle_max = -10.0
+angle_curve = SubResource("Curve_6ixcr")
+scale_amount_curve = SubResource("Curve_uvox0")
