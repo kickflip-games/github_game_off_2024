@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ysshq28sye7"]
+
+[ext_resource type="Script" path="res://entities/enemy/bullet.gd" id="1_c2rgp"]
+[ext_resource type="Texture2D" uid="uid://c7lx6nae4ne6v" path="res://entities/enemy/Arrow.svg" id="2_g6h13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icwr4"]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_c2rgp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_icwr4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g6h13")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
