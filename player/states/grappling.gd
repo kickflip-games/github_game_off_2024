@@ -21,7 +21,7 @@ func handle_input(_event: InputEvent) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(_delta: float) -> void:
-	var input_direction := Input.get_vector("move_left", "move_right", "ui_up", "ui_down")
+	var input_direction := Input.get_vector("move_left", "move_right", "jump", "move_down")
 	print_debug(input_direction)
 	var d:float = distance_to_tip
 	
@@ -50,7 +50,7 @@ func physics_update(_delta: float) -> void:
 	# swing mechanics
 	if input_direction.length() !=0:
 		player.velocity.x += sign(input_direction.x) * player.SWING_FORCE
-		player.velocity.y += sign(input_direction.y) * player.SWING_FORCE * 5
+		player.velocity.y += sign(input_direction.y) * player.SWING_FORCE / 5
 
 	# update the speed of player
 	if player.chain.hooked:
