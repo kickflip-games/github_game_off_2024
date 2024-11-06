@@ -15,6 +15,9 @@ func _on_idle_timer_timeout():
 	enemy.flip_direction()
 	if enemy.patrollingEnemy:
 		finished.emit(PATROL)
+	enemy.flip_direction()
+	if enemy.patrollingEnemy:
+		finished.emit(PATROL)
 
 
 func update(_delta: float) -> void:

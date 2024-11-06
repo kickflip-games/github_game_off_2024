@@ -5,6 +5,7 @@ class_name Enemy
 @onready var animation: Sprite2D = $Sprite2D
 @onready var detection_ray: RayCast2D = $DetectionRay
 @export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 # have to suply this for the enemy to walk.. (pixels per sec)
@@ -46,3 +47,5 @@ func take_damage(knockback_force: Vector2) -> void:
 	if !isDead:
 		velocity += knockback_force  # Apply knockback to the enemy's velocity
 		isDead = true
+	if isDead:
+		animated_sprite.play("death")
