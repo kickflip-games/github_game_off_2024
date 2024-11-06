@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmw2mbuw3nail"
-path="res://.godot/imported/test_titlesheet.png-ce28b17b611955a20e4fe0423cef8c9c.ctex"
+uid="uid://c7lx6nae4ne6v"
+path="res://.godot/imported/Arrow.svg-9dd00a8c89985a634e496f4976119461.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/test_titlesheet.png"
-dest_files=["res://.godot/imported/test_titlesheet.png-ce28b17b611955a20e4fe0423cef8c9c.ctex"]
+source_file="res://enemy/Arrow.svg"
+dest_files=["res://.godot/imported/Arrow.svg-9dd00a8c89985a634e496f4976119461.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

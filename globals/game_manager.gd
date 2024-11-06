@@ -7,7 +7,6 @@ var ON_MOBILE:bool
 
 
 func GameOver():
-	print("Game over")
 	SceneManager.reload_scene()
 
 
