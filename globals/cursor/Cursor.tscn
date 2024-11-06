@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://djwpw33d4d8u7"]
 
 [ext_resource type="Script" path="res://globals/cursor/Cursor.gd" id="1_7wdif"]
-[ext_resource type="Texture2D" uid="uid://cttvdmn6tnokt" path="res://globals/cursor/icons/pointer.png" id="2_rgrsl"]
-[ext_resource type="Texture2D" uid="uid://bew31n48u3di" path="res://globals/cursor/icons/sword.png" id="3_h72gx"]
-[ext_resource type="Texture2D" uid="uid://ddpx83tpnixb5" path="res://globals/cursor/icons/target.png" id="4_pgl86"]
+[ext_resource type="Texture2D" uid="uid://bmvbnu602dghx" path="res://globals/cursor/icons/pointer.png" id="2_rgrsl"]
+[ext_resource type="Texture2D" uid="uid://pa3r83r5o7iu" path="res://globals/cursor/icons/sword.png" id="3_h72gx"]
+[ext_resource type="Texture2D" uid="uid://buf38yk2f73um" path="res://globals/cursor/icons/target.png" id="4_pgl86"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tknkb"]
 animations = [{
