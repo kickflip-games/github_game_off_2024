@@ -940,62 +940,31 @@ walk_speed = 0.0
 position = Vector2(1245, -380)
 walk_speed = 0.0
 
+[node name="Enemy3" parent="." instance=ExtResource("6_pyw4a")]
+position = Vector2(694, -225)
+walk_speed = 0.0
+
+[node name="Enemy4" parent="." instance=ExtResource("6_pyw4a")]
+position = Vector2(1082, -221)
+walk_speed = 0.0
+
+[node name="Enemy5" parent="." instance=ExtResource("6_pyw4a")]
+position = Vector2(1245, -380)
+walk_speed = 0.0
+
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(20, -8)
+position = Vector2(19, -9)
 script = ExtResource("3_qyrwg")
 follow_mode = 5
 follow_target = NodePath("../Player")
-zoom = Vector2(2, 2)
 tween_resource = SubResource("Resource_h5gmi")
-follow_offset = Vector2(1, 1)
-follow_damping = true
-dead_zone_width = 0.2
-dead_zone_height = 0.2
-show_viewfinder_in_play = true
 draw_limits = true
 
-<<<<<<< HEAD
-
-[node name="Enemies" type="Node" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-position = Vector2(20, -8)
-zoom = Vector2(2, 2)
-
-=======
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
 position = Vector2(19, -9)
 
->>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("5_ybg0b")
-<<<<<<< HEAD
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("6_pyw4a")]
-position = Vector2(694, -225)
-walk_speed = 0.0
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("6_pyw4a")]
-position = Vector2(1082, -221)
-walk_speed = 0.0
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource("6_pyw4a")]
-position = Vector2(1245, -380)
-walk_speed = 0.0
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("6_pyw4a")]
-position = Vector2(567, -11)
-walk_speed = 0.0
-
-[node name="Killzone" parent="." instance=ExtResource("7_rdrm3")]
-position = Vector2(-408, 180)
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-shape = SubResource("WorldBoundaryShape2D_bgeiw")
-=======
->>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)

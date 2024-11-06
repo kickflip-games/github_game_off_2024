@@ -33,12 +33,22 @@ texture = ExtResource("3_mxanc")
 region_enabled = true
 region_rect = Rect2(32, 24, 16, 24)
 
+<<<<<<< HEAD
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y85ab")
 animation = &"death"
 autoplay = "idle"
 
+=======
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_ojq0x")
+debug_color = Color(0.572292, 0.548718, 0.242245, 0.42)
+>>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 
@@ -73,6 +83,7 @@ script = ExtResource("6_b6xva")
 
 [node name="ShootTimer" type="Timer" parent="StateMachine/Alerted"]
 
+<<<<<<< HEAD
 [node name="Killzone" parent="." instance=ExtResource("11_c8obm")]
 collision_mask = 4
 
@@ -80,6 +91,8 @@ collision_mask = 4
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_xshuu")
 
+=======
+>>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Death/DeathTimer" to="StateMachine/Death" method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Alerted/ShootTimer" to="StateMachine/Alerted" method="_on_shoot_timer_timeout"]

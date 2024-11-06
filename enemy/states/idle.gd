@@ -16,9 +16,12 @@ func _on_idle_timer_timeout():
 	if enemy.patrollingEnemy:
 		finished.emit(PATROL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enemy.flip_direction()
 	if enemy.patrollingEnemy:
 		finished.emit(PATROL)
+=======
+>>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 =======
 >>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 
