@@ -30,7 +30,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [input]
 
@@ -80,6 +80,5 @@ pointing/emulate_mouse_from_touch=false
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

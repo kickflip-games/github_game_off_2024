@@ -2,6 +2,7 @@ class_name StateMachine extends Node2D
 
 @export var initial_state: State = null
 
+<<<<<<< HEAD
 
 @onready var state: State = (func get_initial_state() -> State:
 	return initial_state if initial_state != null else get_child(0)
@@ -11,6 +12,12 @@ class_name StateMachine extends Node2D
 @onready var _debug_font:Font = ThemeDB.fallback_font
 
 
+=======
+@onready var state: State = (func get_initial_state() -> State:
+	return initial_state if initial_state != null else get_child(0)
+).call()
+
+>>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 
 func _ready() -> void:
 	for state_node: State in find_children("*", "State"):
@@ -18,9 +25,12 @@ func _ready() -> void:
 
 	await owner.ready
 	state.enter("")
+<<<<<<< HEAD
 	
 
 	
+=======
+>>>>>>> parent of 16fd1be (added killzone + organized/cleaned main scene)
 
 
 func _unhandled_input(event: InputEvent) -> void:
