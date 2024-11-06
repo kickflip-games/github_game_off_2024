@@ -21,17 +21,19 @@ func handle_input(_event: InputEvent) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(_delta: float) -> void:
-	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input_direction := Input.get_vector("move_left", "move_right", "ui_up", "ui_down")
+	print_debug(input_direction)
+	var d:float = distance_to_tip
 	
 	chain_velocity =  chain_direction * -player.CHAIN_PULL
 	chain_velocity.y *= 0.55 if chain_velocity.y > 0.0 else 1.65
 	
-	var d:float = distance_to_tip
-	
+	# release if too far from hook
 	if d > player.MAX_HOOK_DISTANCE:
 		release_chain_and_transition_state()
 		return 
 		
+	# speed is damped if grapple from very far, and accelerates when closer
 	elif d > player.MAX_HOOK_DISTANCE /2 and d < player.MAX_HOOK_DISTANCE:
 		var damping_factor = (player.MAX_HOOK_DISTANCE - d) / (player.MAX_HOOK_DISTANCE /2)
 		chain_velocity *= damping_factor
@@ -41,13 +43,16 @@ func physics_update(_delta: float) -> void:
 		if input_direction.length() ==0:
 			player.velocity *= 0.3
 			
-			#finished.emit(HOOKED,{"chain_velocity":chain_velocity}) #TODO: continue here and get better transition
+			# goes into hooked state when immobile
+			if player.velocity.length() <= 5:
+				finished.emit(HOOKED) 
 	
+	# swing mechanics
 	if input_direction.length() !=0:
 		player.velocity.x += sign(input_direction.x) * player.SWING_FORCE
 		player.velocity.y += sign(input_direction.y) * player.SWING_FORCE * 5
 
-		
+	# update the speed of player
 	if player.chain.hooked:
 		player.velocity += chain_velocity
 		player.velocity = player.velocity.limit_length(player.MAX_SPEED)
