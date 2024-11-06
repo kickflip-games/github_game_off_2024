@@ -22,7 +22,6 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 Shaker="*res://addons/shaker/src/Shaker.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameManager="*res://globals/game_manager.gd"
-Cursor="*res://globals/cursor/Cursor.tscn"
 
 [editor]
 
@@ -31,7 +30,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [input]
 
@@ -84,10 +83,8 @@ pointing/emulate_mouse_from_touch=false
 2d_physics/layer_4="Enemy"
 2d_physics/layer_5="Bullet"
 2d_physics/layer_6="Goal"
-2d_physics/layer_7="Glass"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
