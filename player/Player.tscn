@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_fmr7d"]
 [ext_resource type="Script" path="res://player/states/grappling.gd" id="10_4nvv2"]
 
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8q0e"]
 atlas = ExtResource("2_ibxui")
 region = Rect2(0, 0, 80, 80)
@@ -57,6 +58,7 @@ region = Rect2(320, 80, 80, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbmpr"]
 atlas = ExtResource("2_ibxui")
 region = Rect2(400, 80, 80, 80)
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnrin"]
 atlas = ExtResource("2_0o3qo")

@@ -168,10 +168,12 @@ texture = ExtResource("3_mxanc")
 region_enabled = true
 region_rect = Rect2(32, 24, 16, 24)
 
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y85ab")
 animation = &"death"
 autoplay = "idle"
+
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 

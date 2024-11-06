@@ -10,6 +10,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	timer.start(enemy.idling_time_before_flipping)
 	#enemy.animation_player.play("idle")
 
+
 func _on_idle_timer_timeout():
 	enemy.flip_direction()
 	if enemy.patrollingEnemy:
@@ -17,6 +18,7 @@ func _on_idle_timer_timeout():
 	enemy.flip_direction()
 	if enemy.patrollingEnemy:
 		finished.emit(PATROL)
+
 
 func update(_delta: float) -> void:
 	if enemy.player_is_visible():
