@@ -1,4 +1,4 @@
-extends PlayerState
+class_name Airborne extends PlayerState
 # Airborne state
 
 

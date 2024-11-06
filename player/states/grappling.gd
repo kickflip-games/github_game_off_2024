@@ -1,4 +1,4 @@
-extends PlayerState
+class_name Grappling extends PlayerState
 # Grappling
 
 
@@ -18,11 +18,18 @@ func handle_input(_event: InputEvent) -> void:
 		release_chain_and_transition_state()
 
 
+# Put this func here so other sub states can inherit (grappling, hooked, stunned?)
+func release_chain_and_transition_state():
+	player.chain.release()
+	if player.is_on_floor():
+		finished.emit(GROUNDED)
+	else:
+		finished.emit(AIRBORNE)
+
 
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(_delta: float) -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "jump", "move_down")
-	print_debug(input_direction)
 	var d:float = distance_to_tip
 	
 	chain_velocity =  chain_direction * -player.CHAIN_PULL

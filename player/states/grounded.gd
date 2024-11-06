@@ -1,4 +1,4 @@
-extends PlayerState
+class_name Grounded extends PlayerState
 # Grounded state
 
 

@@ -3,10 +3,14 @@ class_name PlayerState extends State
 const GROUNDED = "Grounded"
 const AIRBORNE = "Airborne"
 const GRAPPLING = "Grappling"
-const HOOKED = "Hooked"
+const HOOKED = "Grappling/Hooked"
 
-#TODO: add these other states
-const IDLE = "Idle"
+const IDLE = "Grounded/Idle"
+const MOVING = "Grounded/Moving"
+const ATTACKING = "Attacking"
+const DEAD = "Dead"
+
+#TODO: add these other states?
 const DANCING = "Dancing"
 const STUNNED = "Stunned"
 const INJURED = "Injured" # or hit?
@@ -14,13 +18,6 @@ const INJURED = "Injured" # or hit?
 
 var player: Player
 
-# Put this func here so other states can inherit (grappling, hooked, stunned?)
-func release_chain_and_transition_state():
-	player.chain.release()
-	if player.is_on_floor():
-		finished.emit(GROUNDED)
-	else:
-		finished.emit(AIRBORNE)
 
 
 
