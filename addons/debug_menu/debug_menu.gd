@@ -89,6 +89,7 @@ func _init() -> void:
 		var event := InputEventKey.new()
 		event.keycode = KEY_F3
 		InputMap.action_add_event("cycle_debug_menu", event)
+		
 
 
 func _ready() -> void:
@@ -133,6 +134,8 @@ func _ready() -> void:
 			update_information_label()
 			update_settings_label()
 	)
+
+
 
 
 func _input(event: InputEvent) -> void:
@@ -286,6 +289,10 @@ func update_information_label() -> void:
 			graphics_api_string = "OpenGL ES"
 		elif OS.has_feature("web"):
 			graphics_api_string = "WebGL"
+			if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+				graphics_api_string = "WebGL-MOBILE"
+			else:
+				graphics_api_string = "WebGL-DESKTOP"
 		elif rendering_driver == "opengl3":
 			graphics_api_string = "OpenGL"
 

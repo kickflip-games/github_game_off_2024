@@ -1,9 +1,62 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=28 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
+[ext_resource type="Texture2D" uid="uid://cxj3oiknp2t82" path="res://art/player_death.png" id="2_ibxui"]
 [ext_resource type="PackedScene" uid="uid://d0jsi5texctsy" path="res://player/grappling_hook/grappling_hook.tscn" id="3_pfygb"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_qhyha"]
+[ext_resource type="Script" path="res://player/states/grounded.gd" id="5_rvt0a"]
+[ext_resource type="Script" path="res://player/states/airborne.gd" id="7_jw2qu"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_fmr7d"]
+[ext_resource type="Script" path="res://player/states/grappling.gd" id="10_4nvv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8q0e"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lmt2"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhpa0"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3xip"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm4n4"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ax8u"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0p8o"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxlxm"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rbqt"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(160, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5428"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(240, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5se1e"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(320, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbmpr"]
+atlas = ExtResource("2_ibxui")
+region = Rect2(400, 80, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnrin"]
 atlas = ExtResource("2_0o3qo")
@@ -73,6 +126,47 @@ region = Rect2(560, 0, 80, 80)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_h8q0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lmt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhpa0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3xip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm4n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ax8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0p8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxlxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rbqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5428")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5se1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbmpr")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jnrin")
 }, {
 "duration": 1.0,
@@ -137,10 +231,18 @@ size = Vector2(13, 19)
 size = Vector2(26, 21)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(0, -7)
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_e20yk")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Virtual joystick left" parent="UI" instance=ExtResource("8_fmr7d")]
+mouse_force_pass_scroll_events = false
+visibility_mode = 1
+action_left = "move_left"
+action_right = "move_right"
+action_up = "jump"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -162,8 +264,18 @@ position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_5fjcv")
 debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qhyha")
+initial_state = NodePath("Grounded")
+
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("5_rvt0a")
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("7_jw2qu")
+
+[node name="Grappling" type="Node" parent="StateMachine"]
+script = ExtResource("10_4nvv2")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
