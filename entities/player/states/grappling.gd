@@ -48,7 +48,7 @@ func physics_update(_delta: float) -> void:
 	elif d <= player.AT_HOOK_TIP_DISTANCE:
 		# Dampen only if not wanting to swing
 		if input_direction.length() ==0:
-			player.velocity *= 0.3
+			player.velocity *= 0.1
 			
 			# goes into hooked state when immobile
 			if player.velocity.length() <= 5:
