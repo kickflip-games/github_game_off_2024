@@ -62,8 +62,8 @@ func physics_update(_delta: float) -> void:
 	
 
 func release_chain_and_transition_state():
-	if name not in GRAPPLE_STATES:
-		push_error("Invalid state trying to grapple release: ", name)
+	#if name not in GRAPPLE_STATES:
+		#push_error("Invalid state trying to grapple release: ", name) # Is this relevant? Instead of name=="Grappled", the grappling states are "Grappling/Grappled"
 	player.chain.release()
 	if player.is_on_floor():
 		finished.emit(IDLE)

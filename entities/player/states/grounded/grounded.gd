@@ -10,7 +10,7 @@ func handle_input(_event: InputEvent) -> void:
 		player.attack()
 	var grapple_vector:Vector2 = player.get_grapple_input_vector(_event)
 	if grapple_vector.length() > player.MIN_GRAPPLE_DIST and grapple_vector.length() < player.MAX_HOOK_DISTANCE:
-		finished.emit(GRAPPLING, {"direction":grapple_vector})
+		finished.emit(GRAPPLED, {"direction":grapple_vector})
 
 ## Called by the state machine on the engine's main loop tick.
 func physics_update(_delta: float) -> void:

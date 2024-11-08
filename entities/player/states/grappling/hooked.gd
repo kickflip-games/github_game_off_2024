@@ -4,9 +4,9 @@ extends Grappling
 
 
 
-func handle_input(_event: InputEvent) -> void:
-	if player.mouse_released(_event):
-		release_chain_and_transition_state()
+#func handle_input(_event: InputEvent) -> void:
+	#if player.mouse_released(_event):
+		#release_chain_and_transition_state()
 
 
 func physics_update(_delta: float) -> void:
