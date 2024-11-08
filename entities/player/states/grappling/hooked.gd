@@ -4,13 +4,17 @@ extends Grappling
 
 
 
-#func handle_input(_event: InputEvent) -> void:
-	#if player.mouse_released(_event):
-		#release_chain_and_transition_state()
+func physics_update(delta: float) -> void:
+	var d:float = distance_to_tip
+	
+	chain_velocity =  chain_direction * -player.CHAIN_PULL
+	chain_velocity.y *= 0.55 if chain_velocity.y > 0.0 else 1.65
+	
 
+	player.velocity *= 0.3 # Damping factor
+			
 
-func physics_update(_delta: float) -> void:
-	pass
+	update_player_velocity()
 	
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
