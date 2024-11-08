@@ -1,12 +1,16 @@
 class_name PlayerState extends State
 
-const GROUNDED = "Grounded"
-const AIRBORNE = "Airborne"
-const GRAPPLING = "Grappling"
-const HOOKED = "Grappling/Hooked"
+const GRAPPLING = "GrapplePull"
+const HOOKED = "Hooked"
+const GRAPPLE_STATES = [GRAPPLING, HOOKED]
 
-const IDLE = "Grounded/Idle"
-const MOVING = "Grounded/Moving"
+const IDLE = "Idle"
+const WALKING = "Walking"
+
+const JUMPING = "Jumping"
+const FALLING = "Falling"
+const AIRBORNE_STATES = [JUMPING, FALLING]
+
 const ATTACKING = "Attacking"
 const DEAD = "Dead"
 
