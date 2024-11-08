@@ -11,8 +11,8 @@ const FRICTION_GROUND = 0.85
 const CHAIN_PULL = 105.0
 const HOOK_DIRECTION_OFFSET = 0.05				# Vertical offset for the hook direction
 const SWING_FORCE = 50							# Force applied to swing while hooked
-const MAX_HOOK_DISTANCE = 800.0  				# Maximum distance the hook can extend
-const AT_HOOK_TIP_DISTANCE = 10					# Threshold to dampen when close to the tip
+const MAX_HOOK_DISTANCE = 400.0  				# Maximum distance the hook can extend
+const AT_HOOK_TIP_DISTANCE = 15					# Threshold to dampen when close to the tip
 const MIN_GRAPPLE_DIST = 0.1
 const ATTACK_FORCE = 500
 
