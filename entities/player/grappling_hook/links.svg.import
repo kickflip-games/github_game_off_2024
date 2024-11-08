@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ne3le6pt7kca"
-path="res://.godot/imported/links.svg-d8737e4551d6698bce810d1024a68937.ctex"
+path="res://.godot/imported/links.svg-f0cb10cd67fabdf217e245bba82ec0f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/grappling_hook/links.svg"
-dest_files=["res://.godot/imported/links.svg-d8737e4551d6698bce810d1024a68937.ctex"]
+source_file="res://entities/player/grappling_hook/links.svg"
+dest_files=["res://.godot/imported/links.svg-f0cb10cd67fabdf217e245bba82ec0f3.ctex"]
 
 [params]
 
