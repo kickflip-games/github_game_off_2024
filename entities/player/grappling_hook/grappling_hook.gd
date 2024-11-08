@@ -41,11 +41,11 @@ func _physics_process(_delta: float) -> void:
 	$Tip.global_position = tip                  # Ensure the tip is updated to follow movement
 
 	if flying:
-		var collision = $Tip.move_and_collide(direction * SPEED)
+		var collision_info = $Tip.move_and_collide(direction * SPEED)
 		
-		if collision:
+		if collision_info:
 			hooked = true                       # If we hit something, we're hooked
 			flying = false
-			print("Hooked!")                    # Stop flying
+			print("Hooked! Attached to ", collision_info.get_collider().name )                    # Stop flying
 
 	tip = $Tip.global_position                  # Update tip for the next frame

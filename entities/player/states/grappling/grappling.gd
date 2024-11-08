@@ -18,15 +18,6 @@ func handle_input(_event: InputEvent) -> void:
 		release_chain_and_transition_state()
 
 
-# Put this func here so other sub states can inherit (grappling, hooked, stunned?)
-func release_chain_and_transition_state():
-	player.chain.release()
-	if player.is_on_floor():
-		finished.emit(GROUNDED)
-	else:
-		finished.emit(AIRBORNE)
-
-
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(_delta: float) -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "jump", "move_down")
@@ -67,9 +58,14 @@ func physics_update(_delta: float) -> void:
 	
 
 
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(previous_state_path: String, data := {}) -> void:
-	var direction:Vector2 = data.get('direction')
-	chain_velocity = Vector2.ZERO
-	player.chain.shoot(direction)
+
+	
+
+func release_chain_and_transition_state():
+	if name not in GRAPPLE_STATES:
+		push_error("Invalid state trying to grapple release: ", name)
+	player.chain.release()
+	if player.is_on_floor():
+		finished.emit(IDLE)
+	else:
+		finished.emit(FALLING)
