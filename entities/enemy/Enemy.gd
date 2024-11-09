@@ -4,6 +4,7 @@ class_name Enemy
 # Nodes and Scene Variables
 @onready var animation: Sprite2D = $Sprite2D
 @onready var detection_ray: RayCast2D = $DetectionRay
+@onready var detection_cone:Node = $ViewCone
 @export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
 
 
@@ -13,6 +14,7 @@ class_name Enemy
 @export var path_follow:PathFollow2D
 
 var isDead:bool 
+var isAlerted:bool
 
 
 var patrollingEnemy:bool:
@@ -26,6 +28,10 @@ var direction: int: # 1 is right, -1 is left
 func flip_direction() -> void:
 	animation.flip_h = !animation.flip_h
 	detection_ray.target_position.x = -1*detection_ray.target_position.x
+	if direction >0 :
+		detection_cone.rotation = 0
+	else:
+		detection_cone.rotate(PI)
 
 
 func player_is_visible() -> bool:
@@ -35,6 +41,10 @@ func player_is_visible() -> bool:
 			return true
 	return false
 
+
+func enter_alert_mode():
+	isAlerted = true
+	$ViewCone/Sprite2D.modulate = Color.RED
 
 func take_damage(knockback_force: Vector2) -> void:
 	if !isDead:

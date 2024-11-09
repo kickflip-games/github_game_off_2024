@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdto1w15bi4i5"]
+[gd_scene load_steps=11 format=3 uid="uid://cdto1w15bi4i5"]
 
 [ext_resource type="Script" path="res://entities/enemy/Enemy.gd" id="1_hngig"]
 [ext_resource type="PackedScene" uid="uid://c5ysshq28sye7" path="res://entities/enemy/bullet.tscn" id="2_vt85h"]
+[ext_resource type="Texture2D" uid="uid://bbph434v8cijo" path="res://art/view_cone.png" id="3_irr83"]
 [ext_resource type="Texture2D" uid="uid://bt58jaaa78yp8" path="res://entities/enemy/enemy_walk.png" id="3_mxanc"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_5eae6"]
 [ext_resource type="Script" path="res://entities/enemy/states/patrol.gd" id="5_45la2"]
@@ -12,18 +13,26 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8saf"]
 size = Vector2(16, 20)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
 script = ExtResource("1_hngig")
 bullet_scene = ExtResource("2_vt85h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j8saf")
-
 [node name="DetectionRay" type="RayCast2D" parent="."]
-position = Vector2(0, 6.86)
+position = Vector2(1.52588e-05, 6.86)
+scale = Vector2(1, 1)
 target_position = Vector2(200, 0)
 collision_mask = 4
+
+[node name="ViewCone" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ViewCone"]
+position = Vector2(101, 0.5)
+scale = Vector2(0.219485, 0.0402542)
+texture = ExtResource("3_irr83")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j8saf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -2.18)
