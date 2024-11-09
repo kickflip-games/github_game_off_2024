@@ -1,16 +1,20 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=35 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
 [ext_resource type="PackedScene" uid="uid://d0jsi5texctsy" path="res://entities/player/grappling_hook/grappling_hook.tscn" id="3_pfygb"]
 [ext_resource type="Script" path="res://common/state_machine.gd" id="4_qhyha"]
+[ext_resource type="Script" path="res://entities/player/states/grounded/grounded.gd" id="6_jgay2"]
 [ext_resource type="Script" path="res://entities/player/states/grounded/idle.gd" id="7_q750a"]
 [ext_resource type="Script" path="res://entities/player/states/grounded/walking.gd" id="7_y41rv"]
 [ext_resource type="Script" path="res://entities/player/states/airborne/falling.gd" id="8_1qvdx"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_fmr7d"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/hooked.gd" id="9_2svqd"]
 [ext_resource type="Script" path="res://entities/player/states/airborne/jumping.gd" id="9_5p5m5"]
-[ext_resource type="Script" path="res://entities/player/states/grappling/grapple_pull.gd" id="10_00gpx"]
+[ext_resource type="Script" path="res://entities/player/states/grappling/grappled.gd" id="10_00gpx"]
+[ext_resource type="Script" path="res://entities/player/states/grappling/grappling.gd" id="10_iwfwn"]
+[ext_resource type="Script" path="res://entities/player/states/airborne/airborne.gd" id="11_li003"]
+[ext_resource type="Script" path="res://entities/player/states/grappling/swinging.gd" id="15_ax3aw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnrin"]
 atlas = ExtResource("2_0o3qo")
@@ -179,29 +183,41 @@ debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qhyha")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Grounded/Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("7_q750a")
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("6_jgay2")
 
-[node name="Walking" type="Node" parent="StateMachine"]
+[node name="Walking" type="Node" parent="StateMachine/Grounded"]
 script = ExtResource("7_y41rv")
 
-[node name="Falling" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("7_q750a")
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("11_li003")
+
+[node name="Falling" type="Node" parent="StateMachine/Airborne"]
 script = ExtResource("8_1qvdx")
 
-[node name="Jumping" type="Node" parent="StateMachine"]
+[node name="Jumping" type="Node" parent="StateMachine/Airborne"]
 script = ExtResource("9_5p5m5")
 
-[node name="GrapplePull" type="Node" parent="StateMachine"]
+[node name="Grappling" type="Node" parent="StateMachine"]
+script = ExtResource("10_iwfwn")
+
+[node name="Grappled" type="Node" parent="StateMachine/Grappling"]
 script = ExtResource("10_00gpx")
 
-[node name="Hooked" type="Node" parent="StateMachine"]
+[node name="Hooked" type="Node" parent="StateMachine/Grappling"]
 script = ExtResource("9_2svqd")
 
-[node name="Dead" type="Node" parent="StateMachine"]
+[node name="Swinging" type="Node" parent="StateMachine/Grappling"]
+script = ExtResource("15_ax3aw")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
+
+[node name="Dead" type="Node" parent="StateMachine"]
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
