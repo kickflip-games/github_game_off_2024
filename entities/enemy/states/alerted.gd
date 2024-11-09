@@ -15,11 +15,18 @@ func shoot_bullet() -> void:
 
 func _on_shoot_timer_timeout():
 	can_shoot = true
+	# after timer alert everyone
+	get_tree().call_group("Enemy", "enter_alert_mode")
 
 
 func enter(previous_state_path: String, data := {}) -> void:
 	enemy.animation.modulate = Color.RED
 	timer.start()
+	if enemy.isAlerted:
+		can_shoot = true
+	else: # first time entering alert state
+		Slowmo.start()
+		
 
 func update(_delta: float) -> void:
 	if not enemy.player_is_visible():
