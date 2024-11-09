@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8xk1rohg3jp4"]
+
+[ext_resource type="Script" path="res://entities/camera/camera_manager.gd" id="1_6l7ha"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_ll6gx"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_by5v8"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_gqckn"]
+
+[sub_resource type="Resource" id="Resource_h5gmi"]
+script = ExtResource("2_by5v8")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mab1"]
+size = Vector2(1990, 611)
+
+[node name="CameraManager" type="Node"]
+script = ExtResource("1_6l7ha")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(-12, 200)
+script = ExtResource("1_ll6gx")
+follow_mode = 5
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_h5gmi")
+follow_offset = Vector2(1, 1)
+follow_damping = true
+dead_zone_width = 0.2
+dead_zone_height = 0.2
+show_viewfinder_in_play = true
+draw_limits = true
+limit_left = -300
+limit_top = -250
+limit_right = 1600
+limit_bottom = 400
+limit_target = NodePath("../CameraBounds/CollisionShape2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-12, 200)
+zoom = Vector2(2, 2)
+limit_left = -995
+limit_top = -306
+limit_right = 995
+limit_bottom = 306
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_gqckn")
+
+[node name="CameraBounds" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBounds"]
+shape = SubResource("RectangleShape2D_8mab1")
