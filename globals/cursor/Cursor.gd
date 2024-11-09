@@ -2,7 +2,8 @@ extends Node2D
 enum Shapes {
 	CURSOR_POINTER,
 	CURSOR_SWORD,
-	CURSOR_TARGET
+	CURSOR_TARGET,
+	CUSOR_DISABLED
 }
 
 ## Instead of the Input function, use this as it only shows the sprite and never the cursor

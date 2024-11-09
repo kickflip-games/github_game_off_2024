@@ -44,3 +44,5 @@ follow_viewport_enabled = true
 [node name="Sprite" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_tknkb")
 animation = &"pointer"
+
+[node name="RaycastMouseToPlayer" type="RayCast2D" parent="."]

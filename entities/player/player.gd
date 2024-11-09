@@ -25,7 +25,7 @@ var isDead:bool = false
 
 
 @onready var chain = $Chain
-@onready var raycast_to_cursor = $RaycastToCursor
+#@onready var raycast_to_cursor = $RaycastToCursor
 
 
 
@@ -57,17 +57,17 @@ func take_damage():
 		isDead = true
 		GameManager.GameOver()
 
-
-func _process(delta):
-	update_raycast_to_cursor()
-	queue_redraw()
-
-
-
-func update_raycast_to_cursor():
-	var mouse_position = get_global_mouse_position()
-	var direction = mouse_position - global_position
-	raycast_to_cursor.target_position = direction
+#
+#func _process(delta):
+	#update_raycast_to_cursor()
+	#queue_redraw()
+#
+#
+#
+#func update_raycast_to_cursor():
+	#var mouse_position = get_global_mouse_position()
+	#var direction = mouse_position - global_position
+	#raycast_to_cursor.target_position = direction
 
 
 
@@ -105,16 +105,16 @@ func mouse_released(_event:InputEvent)->bool:
 			if _event.is_released():
 				return true
 	return false
-	
-
-
-func _draw():
-	# Check if the raycast is colliding
-	if raycast_to_cursor.is_colliding():
-		# If obstructed, stop at the collision point
-		var collision_point = raycast_to_cursor.get_collision_point()
-		draw_line(global_position, collision_point, Color.RED, 2)
-	else:
-		# If unobstructed, draw line directly to the mouse
-		var mouse_position = get_global_mouse_position()
-		draw_line(global_position, mouse_position, Color.GREEN, 2)
+	#
+#
+#
+#func _draw():
+	## Check if the raycast is colliding
+	#if raycast_to_cursor.is_colliding():
+		## If obstructed, stop at the collision point
+		#var collision_point = raycast_to_cursor.get_collision_point()
+		#draw_line(position, collision_point, Color.RED, 2)
+	#else:
+		## If unobstructed, draw line directly to the mouse
+		#var mouse_position = get_global_mouse_position()
+		#draw_line(position, mouse_position, Color.GREEN, 2)
