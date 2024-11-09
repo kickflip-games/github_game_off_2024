@@ -42,8 +42,9 @@ position = Vector2(1493, -25)
 position = Vector2(553, 84)
 walk_speed = 0.0
 
-[node name="LinearPathEnemy" type="Node" parent="."]
+[node name="LinearPathEnemy" type="Node2D" parent="."]
 script = ExtResource("6_q4w6x")
+metadata/_edit_group_ = true
 
 [node name="Path2D" type="Path2D" parent="LinearPathEnemy"]
 position = Vector2(3, 303.07)
