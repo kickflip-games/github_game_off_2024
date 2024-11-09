@@ -25,6 +25,7 @@ var isDead:bool = false
 
 
 @onready var chain = $Chain
+@onready var raycast_to_cursor = $RaycastToCursor
 
 
 
@@ -57,10 +58,17 @@ func take_damage():
 		GameManager.GameOver()
 
 
+func _process(delta):
+	update_raycast_to_cursor()
+	queue_redraw()
 
 
-#### INPUT HELPERS ####
-# Maybe these should be in the PlayerState.gd script?
+
+func update_raycast_to_cursor():
+	var mouse_position = get_global_mouse_position()
+	var direction = mouse_position - global_position
+	raycast_to_cursor.target_position = direction
+
 
 
 func attack_input_pressed(_event: InputEvent)->bool:
@@ -68,6 +76,7 @@ func attack_input_pressed(_event: InputEvent)->bool:
 		if _event.is_pressed() and enemies_are_nearby:  # Mouse button down.
 			return true
 	return false
+
 
 
 func get_grapple_input_vector(_event: InputEvent)->Vector2:
@@ -78,6 +87,17 @@ func get_grapple_input_vector(_event: InputEvent)->Vector2:
 			direction = (target_position - global_position).normalized()
 			direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
 	return direction
+	#if !enemies_are_nearby:
+		#var target_position:Vector2
+		#if _event is InputEventMouseButton and _event.is_pressed():
+			#target_position = get_global_mouse_position()
+		#elif  _event is InputEventScreenTouch:
+			#target_position = _event.position
+		#
+		#if target_position:
+			#direction = (target_position - global_position).normalized()
+			#direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
+	#return direction
 
 
 func mouse_released(_event:InputEvent)->bool:
@@ -86,4 +106,15 @@ func mouse_released(_event:InputEvent)->bool:
 				return true
 	return false
 	
-	
+
+
+func _draw():
+	# Check if the raycast is colliding
+	if raycast_to_cursor.is_colliding():
+		# If obstructed, stop at the collision point
+		var collision_point = raycast_to_cursor.get_collision_point()
+		draw_line(global_position, collision_point, Color.RED, 2)
+	else:
+		# If unobstructed, draw line directly to the mouse
+		var mouse_position = get_global_mouse_position()
+		draw_line(global_position, mouse_position, Color.GREEN, 2)
