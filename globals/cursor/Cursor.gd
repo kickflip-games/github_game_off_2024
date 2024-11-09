@@ -16,7 +16,8 @@ var current_animation: StringName
 var current_frame_texture: Texture2D
 
 
-
+var on_grapple_point:bool:
+	get: return shape==Shapes.CURSOR_TARGET
 
 
 func _ready():

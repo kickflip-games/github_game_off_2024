@@ -75,6 +75,9 @@ limit_top = -259
 limit_right = 1622
 limit_bottom = 352
 
+[node name="CameraBounds" parent="CameraManager" index="2"]
+visible = false
+
 [node name="CollisionShape2D" parent="CameraManager/CameraBounds" index="0"]
 position = Vector2(627, 46.5)
 debug_color = Color(0.52066, 0.440946, 0.944405, 0.42)
