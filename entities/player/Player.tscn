@@ -149,7 +149,6 @@ size = Vector2(26, 21)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 4
-collision_mask = 9
 slide_on_ceiling = false
 script = ExtResource("1_e20yk")
 
@@ -175,7 +174,7 @@ shape = SubResource("RectangleShape2D_7usrl")
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 24
+collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
 position = Vector2(0, -2.5)
