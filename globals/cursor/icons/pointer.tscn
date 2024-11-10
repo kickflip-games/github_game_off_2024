@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnera3np3yh1g"]
+
+[ext_resource type="Texture2D" uid="uid://bmvbnu602dghx" path="res://globals/cursor/icons/pointer.png" id="1_xedpw"]
+
+[node name="Pointer" type="Sprite2D"]
+position = Vector2(7, 10)
+texture = ExtResource("1_xedpw")
