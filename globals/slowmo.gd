@@ -1,9 +1,11 @@
 extends Node
 
 # Constants for time control
-const SLOW_FACTOR: float = 0.5  # Target slow factor (e.g., 0.5 = half speed)
-const SLOW_DURATION: float = 2.0  # Duration of time slowdown in seconds
-const TRANSITION_SPEED: float = 3.0  # Speed of the smooth transition
+const SLOW_FACTOR: float = 0.75  # Target slow factor (e.g., 0.5 = half speed)
+
+# TOTAL SLOWMO TIME = Transition + slow + ttransitionn
+const SLOW_DURATION: float = 0.5  # Duration of time slowdown in seconds
+const TRANSITION_SPEED: float = 0.5  # Speed of the smooth transition
 
 # State tracking
 var is_slowing_down: bool = false  # Track if slowing down is in effect
@@ -23,8 +25,8 @@ func _process(delta):
 		Engine.time_scale = lerp(Engine.time_scale, 1.0, TRANSITION_SPEED * delta)
 
 func start():
-	print(">>>>>>>>>>>>>> SLOWMO TRIGGERED <<<<<<<<<<<<<<<<<<")
 	if not is_slowing_down:
+			print(">>>>>>>>>>>>>> SLOWMO TRIGGERED <<<<<<<<<<<<<<<<<<")
 		# Activate time slowdown
 		is_slowing_down = true
 		slow_timer = SLOW_DURATION
