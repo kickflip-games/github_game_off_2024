@@ -53,23 +53,23 @@ func enter(previous_state_path: String, data := {}) -> void:
 func exit() -> void:
 	print("Proggress is ", str(progress), " --> Exit patrolling")
 	
-func _draw():
-	if GameManager.DEBUG_MODE:
-		var text_position = Vector2(10, -20)
-		var text = "Progress : " + str(progress)
-
-		# Draw a background box for the text (optional)
-		var rect_size = Vector2(0, 20)
-		draw_rect(Rect2(text_position, rect_size), Color(0, 0, 0, 0.5))
-		# Draw the text using the default font
-		draw_string(
-			GameManager.debug_font,  # No font is specified, so the default font will be used
-			text_position + Vector2(5, 15),  # Offset to center text in box
-			text,
-			HORIZONTAL_ALIGNMENT_LEFT,
-			-1,
-			12,
-			Color.WHITE
-		)
-		
-		
+#func _draw():
+	#if GameManager.DEBUG_MODE
+		#var text_position = Vector2(10, -20)
+		#var text = "Progress : " + str(progress)
+#
+		## Draw a background box for the text (optional)
+		#var rect_size = Vector2(0, 20)
+		#draw_rect(Rect2(text_position, rect_size), Color(0, 0, 0, 0.5))
+		## Draw the text using the default font
+		#draw_string(
+			#GameManager.debug_font,  # No font is specified, so the default font will be used
+			#text_position + Vector2(5, 15),  # Offset to center text in box
+			#text,
+			#HORIZONTAL_ALIGNMENT_LEFT,
+			#-1,
+			#12,
+			#Color.WHITE
+		#)
+		#
+		#

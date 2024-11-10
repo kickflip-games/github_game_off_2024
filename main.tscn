@@ -10,7 +10,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_gnl3o"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1260, -7, 0, 0, 0, 0, 732, -6)
+"points": PackedVector2Array(0, 0, 0, 0, 732, -6, 0, 0, 0, 0, 1260, -7)
 }
 point_count = 2
 
@@ -35,13 +35,11 @@ position = Vector2(3, 303.07)
 curve = SubResource("Curve2D_gnl3o")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(1260, -7)
-rotation = 3.1397
+position = Vector2(732, -6)
+rotation = -0.00189394
 
 [node name="Enemy2" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("6_pyw4a")]
-position = Vector2(202.011, 4.163)
-rotation = -3.1397
-walk_speed = 40.0
+position = Vector2(202.004, -1.68743)
 path_follow = NodePath("..")
 
 [node name="Enemy3" parent="." instance=ExtResource("6_pyw4a")]

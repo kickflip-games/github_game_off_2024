@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://s1jp48cdvl6h"]
+[gd_scene load_steps=8 format=4 uid="uid://s1jp48cdvl6h"]
 
 [ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://entities/enemy/Enemy.tscn" id="1_wsq0d"]
 [ext_resource type="Texture2D" uid="uid://hb3cw47l3wlb" path="res://map/SimpleTiles_allColors.png" id="2_uv27r"]
@@ -887,6 +887,12 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_f7jvy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -58.99, 0)
+}
+point_count = 2
+
 [node name="EnemyTest" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -911,5 +917,18 @@ position = Vector2(-183, 77)
 
 [node name="Enemy" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wsq0d")]
 position = Vector2(2.99997, -0.0147781)
+idling_time_before_flipping = 0.1
+path_follow = NodePath("..")
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(-13.08, 77.48)
+curve = SubResource("Curve2D_f7jvy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+rotation = 3.14159
+
+[node name="Enemy" parent="Path2D2/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("1_wsq0d")]
+position = Vector2(2.99997, -0.0147781)
+rotation = 3.14159
 idling_time_before_flipping = 0.1
 path_follow = NodePath("..")
