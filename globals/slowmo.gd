@@ -23,6 +23,7 @@ func _process(delta):
 		Engine.time_scale = lerp(Engine.time_scale, 1.0, TRANSITION_SPEED * delta)
 
 func start():
+	print(">>>>>>>>>>>>>> SLOWMO TRIGGERED <<<<<<<<<<<<<<<<<<")
 	if not is_slowing_down:
 		# Activate time slowdown
 		is_slowing_down = true

@@ -183,41 +183,41 @@ debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_qhyha")
-initial_state = NodePath("Grounded/Idle")
+initial_state = NodePath("")
 
-[node name="Grounded" type="Node" parent="StateMachine"]
+[node name="Grounded" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_jgay2")
 
-[node name="Walking" type="Node" parent="StateMachine/Grounded"]
+[node name="Walking" type="Node2D" parent="StateMachine/Grounded"]
 script = ExtResource("7_y41rv")
 
-[node name="Idle" type="Node" parent="StateMachine/Grounded"]
+[node name="Idle" type="Node2D" parent="StateMachine/Grounded"]
 script = ExtResource("7_q750a")
 
-[node name="Airborne" type="Node" parent="StateMachine"]
+[node name="Airborne" type="Node2D" parent="StateMachine"]
 script = ExtResource("11_li003")
 
-[node name="Falling" type="Node" parent="StateMachine/Airborne"]
+[node name="Falling" type="Node2D" parent="StateMachine/Airborne"]
 script = ExtResource("8_1qvdx")
 
-[node name="Jumping" type="Node" parent="StateMachine/Airborne"]
+[node name="Jumping" type="Node2D" parent="StateMachine/Airborne"]
 script = ExtResource("9_5p5m5")
 
-[node name="Grappling" type="Node" parent="StateMachine"]
+[node name="Grappling" type="Node2D" parent="StateMachine"]
 script = ExtResource("10_iwfwn")
 
-[node name="Grappled" type="Node" parent="StateMachine/Grappling"]
+[node name="Grappled" type="Node2D" parent="StateMachine/Grappling"]
 script = ExtResource("10_00gpx")
 
-[node name="Hooked" type="Node" parent="StateMachine/Grappling"]
+[node name="Hooked" type="Node2D" parent="StateMachine/Grappling"]
 script = ExtResource("9_2svqd")
 
-[node name="Swinging" type="Node" parent="StateMachine/Grappling"]
+[node name="Swinging" type="Node2D" parent="StateMachine/Grappling"]
 script = ExtResource("15_ax3aw")
 
-[node name="Attacking" type="Node" parent="StateMachine"]
+[node name="Attacking" type="Node2D" parent="StateMachine"]
 
-[node name="Dead" type="Node" parent="StateMachine"]
+[node name="Dead" type="Node2D" parent="StateMachine"]
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

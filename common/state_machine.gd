@@ -8,9 +8,6 @@ class_name StateMachine extends Node2D
 ).call()
 
 
-@onready var _debug_font:Font = ThemeDB.fallback_font
-
-
 
 func _ready() -> void:
 	for state_node: State in find_children("*", "State"):
@@ -61,7 +58,7 @@ func _draw():
 		draw_rect(Rect2(text_position, rect_size), Color(0, 0, 0, 0.5))
 		# Draw the text using the default font
 		draw_string(
-			_debug_font,  # No font is specified, so the default font will be used
+			GameManager.debug_font,  # No font is specified, so the default font will be used
 			text_position + Vector2(5, 15),  # Offset to center text in box
 			text,
 			HORIZONTAL_ALIGNMENT_LEFT,
