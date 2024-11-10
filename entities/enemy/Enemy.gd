@@ -17,6 +17,9 @@ var isDead:bool
 var isAlerted:bool
 
 
+
+
+
 var patrollingEnemy:bool:
 	get: return walk_speed > 0 and path_follow!=null
 
@@ -53,3 +56,24 @@ func take_damage(knockback_force: Vector2) -> void:
 	if !isDead:
 		velocity += knockback_force  # Apply knockback to the enemy's velocity
 		isDead = true
+
+
+
+func is_path_pointing_right(path: Path2D) -> bool:
+	# Make sure there are enough points to determine direction
+	if path.curve.get_point_count() < 2:
+		return false  # Not enough points to determine direction
+
+	# Get the first two points
+	var start_point = path.curve.get_point_position(0)
+	var next_point = path.curve.get_point_position(1)
+
+	# Check if the path is pointing in the positive X direction
+	return next_point.x > start_point.x
+
+
+func _ready():
+	await SceneManager.scene_loaded
+	if patrollingEnemy:
+		if !is_path_pointing_right(path_follow.get_parent()):
+			push_error("Path2d must be poinnting in the +ive right dir")
