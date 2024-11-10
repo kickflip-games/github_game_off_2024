@@ -81,23 +81,24 @@ func attack_input_pressed(_event: InputEvent)->bool:
 
 func get_grapple_input_vector(_event: InputEvent)->Vector2:
 	var direction: Vector2 = Vector2.ZERO
+	
+	#var target_position:Vector2
+	#if _event is InputEventMouseButton and _event.is_pressed():
+	#target_position = get_global_mouse_position()
+	#elif  _event is InputEventScreenTouch:
+	#	target_position = _event.position
+	#
+	#if target_position:
+	#	direction = (target_position - global_position).normalized()
+	#	direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
+	
+	
 	if Cursor.on_grapple_point and _event is InputEventMouseButton:
 		if _event.is_pressed() and  !enemies_are_nearby: # Mouse button down
 			var target_position = get_global_mouse_position()
 			direction = (target_position - global_position).normalized()
 			direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
 	return direction
-	#if !enemies_are_nearby:
-		#var target_position:Vector2
-		#if _event is InputEventMouseButton and _event.is_pressed():
-			#target_position = get_global_mouse_position()
-		#elif  _event is InputEventScreenTouch:
-			#target_position = _event.position
-		#
-		#if target_position:
-			#direction = (target_position - global_position).normalized()
-			#direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
-	#return direction
 
 
 func mouse_released(_event:InputEvent)->bool:
