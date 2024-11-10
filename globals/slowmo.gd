@@ -26,7 +26,7 @@ func _process(delta):
 
 func start():
 	if not is_slowing_down:
-			print(">>>>>>>>>>>>>> SLOWMO TRIGGERED <<<<<<<<<<<<<<<<<<")
+		print(">>>>>>>>>>>>>> SLOWMO TRIGGERED <<<<<<<<<<<<<<<<<<")
 		# Activate time slowdown
 		is_slowing_down = true
 		slow_timer = SLOW_DURATION
