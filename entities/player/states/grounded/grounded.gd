@@ -10,7 +10,7 @@ func handle_input(_event: InputEvent) -> void:
 		player.attack()
 	var grapple_vector:Vector2 = player.get_grapple_input_vector(_event)
 	
-	# Shoot grapple
+	# Shoot grapples
 	if grapple_vector.length() > player.MIN_GRAPPLE_DIST and grapple_vector.length() < player.MAX_HOOK_DISTANCE:
 		finished.emit(GRAPPLING, {"direction":grapple_vector})
 

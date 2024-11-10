@@ -4,8 +4,7 @@ var DEBUG_MODE:bool = true
 var ON_MOBILE:bool 
 
 
-
-
+@onready var debug_font:Font = ThemeDB.fallback_font
 
 
 
