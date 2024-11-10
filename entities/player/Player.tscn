@@ -181,9 +181,8 @@ position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_5fjcv")
 debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 
-[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("4_qhyha")
-initial_state = NodePath("")
 
 [node name="Grounded" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_jgay2")
