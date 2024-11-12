@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=34 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_fmr7d"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/hooked.gd" id="9_2svqd"]
 [ext_resource type="Script" path="res://entities/player/states/airborne/jumping.gd" id="9_5p5m5"]
-[ext_resource type="Script" path="res://entities/player/states/grappling/grappled.gd" id="10_00gpx"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/grappling.gd" id="10_iwfwn"]
 [ext_resource type="Script" path="res://entities/player/states/airborne/airborne.gd" id="11_li003"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/swinging.gd" id="15_ax3aw"]
@@ -204,9 +203,6 @@ script = ExtResource("9_5p5m5")
 
 [node name="Grappling" type="Node2D" parent="StateMachine"]
 script = ExtResource("10_iwfwn")
-
-[node name="Grappled" type="Node2D" parent="StateMachine/Grappling"]
-script = ExtResource("10_00gpx")
 
 [node name="Hooked" type="Node2D" parent="StateMachine/Grappling"]
 script = ExtResource("9_2svqd")
