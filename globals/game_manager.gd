@@ -4,6 +4,8 @@ var DEBUG_MODE:bool = true
 var ON_MOBILE:bool 
 
 
+@onready var debug_font:Font = ThemeDB.fallback_font
+
 
 
 func GameOver():
@@ -36,4 +38,12 @@ func _set_debug_menu():
 		DebugMenu.style = DebugMenu.Style.MAX
 	else:
 		DebugMenu.visible = false
+		
+
+
+func get_player()->Player:
+	return get_tree().get_first_node_in_group("Player")
+
+func get_enemies()->Array[Node]:
+	return get_tree().get_nodes_in_group("Enemy")
 	

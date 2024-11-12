@@ -75,6 +75,9 @@ func _ready() -> void:
 	
 	if visibility_mode == Visibility_mode.WHEN_TOUCHED:
 		hide()
+		
+	if !GameManager.ON_MOBILE:
+		hide()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:

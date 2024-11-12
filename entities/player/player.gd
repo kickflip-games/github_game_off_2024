@@ -10,7 +10,6 @@ const FRICTION_AIR = 0.95
 const FRICTION_GROUND = 0.85
 const CHAIN_PULL = 105.0
 const HOOK_DIRECTION_OFFSET = 0.05				# Vertical offset for the hook direction
-const SWING_FORCE = 50							# Force applied to swing while hooked
 const MAX_HOOK_DISTANCE = 400.0  				# Maximum distance the hook can extend
 const AT_HOOK_TIP_DISTANCE = 15					# Threshold to dampen when close to the tip
 const MIN_GRAPPLE_DIST = 0.1
@@ -26,6 +25,7 @@ var isDead:bool = false
 
 
 @onready var chain = $Chain
+#@onready var raycast_to_cursor = $RaycastToCursor
 
 
 
@@ -57,11 +57,18 @@ func take_damage():
 		isDead = true
 		GameManager.GameOver()
 
+#
+#func _process(delta):
+	#update_raycast_to_cursor()
+	#queue_redraw()
+#
+#
+#
+#func update_raycast_to_cursor():
+	#var mouse_position = get_global_mouse_position()
+	#var direction = mouse_position - global_position
+	#raycast_to_cursor.target_position = direction
 
-
-
-#### INPUT HELPERS ####
-# Maybe these should be in the PlayerState.gd script?
 
 
 func attack_input_pressed(_event: InputEvent)->bool:
@@ -71,9 +78,22 @@ func attack_input_pressed(_event: InputEvent)->bool:
 	return false
 
 
+
 func get_grapple_input_vector(_event: InputEvent)->Vector2:
 	var direction: Vector2 = Vector2.ZERO
-	if _event is InputEventMouseButton:
+	
+	#var target_position:Vector2
+	#if _event is InputEventMouseButton and _event.is_pressed():
+	#target_position = get_global_mouse_position()
+	#elif  _event is InputEventScreenTouch:
+	#	target_position = _event.position
+	#
+	#if target_position:
+	#	direction = (target_position - global_position).normalized()
+	#	direction.y -= HOOK_DIRECTION_OFFSET # vertical offset if hook aims too low
+	
+	
+	if Cursor.on_grapple_point and _event is InputEventMouseButton:
 		if _event.is_pressed() and  !enemies_are_nearby: # Mouse button down
 			var target_position = get_global_mouse_position()
 			direction = (target_position - global_position).normalized()
@@ -86,5 +106,16 @@ func mouse_released(_event:InputEvent)->bool:
 			if _event.is_released():
 				return true
 	return false
-	
-	
+	#
+#
+#
+#func _draw():
+	## Check if the raycast is colliding
+	#if raycast_to_cursor.is_colliding():
+		## If obstructed, stop at the collision point
+		#var collision_point = raycast_to_cursor.get_collision_point()
+		#draw_line(position, collision_point, Color.RED, 2)
+	#else:
+		## If unobstructed, draw line directly to the mouse
+		#var mouse_position = get_global_mouse_position()
+		#draw_line(position, mouse_position, Color.GREEN, 2)
