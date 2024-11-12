@@ -24,6 +24,7 @@ SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameManager="*res://globals/game_manager.gd"
 Cursor="*res://globals/cursor/Cursor.tscn"
 Slowmo="*res://globals/slowmo.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [editor]
 
@@ -32,7 +33,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/silent_wolf/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg")
 
 [global_group]
 
