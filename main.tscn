@@ -71,7 +71,6 @@ position = Vector2(-75, 199)
 dead_zone_width = 0.02
 
 [node name="Camera2D" parent="CameraManager" index="1"]
-position = Vector2(-5.37372, 89.562)
 limit_left = -368
 limit_top = -259
 limit_right = 1622
