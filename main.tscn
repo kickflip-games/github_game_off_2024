@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_qwch8"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_ybg0b"]
 [ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://entities/enemy/Enemy.tscn" id="6_pyw4a"]
-[ext_resource type="Script" path="res://common/linear_path_enemy.gd" id="6_q4w6x"]
+[ext_resource type="Script" path="res://entities/enemy/linear_path_enemy.gd" id="6_q4w6x"]
 [ext_resource type="Script" path="res://entities/killzone/killzone.gd" id="8_tjbcs"]
 
 [sub_resource type="Curve2D" id="Curve2D_gnl3o"]
