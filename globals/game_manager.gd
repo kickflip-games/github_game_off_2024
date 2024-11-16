@@ -14,8 +14,7 @@ func GameOver():
 
 
 func NextLevel():
-	print("For now we'll just reload...")
-	SceneManager.reload_scene()
+	LevelManager.load_next_level()
 
 
 

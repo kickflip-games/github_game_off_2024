@@ -13,18 +13,26 @@ func _ready():
 func load_levels():
 	var dir = DirAccess.open("res://Levels")
 	if dir == null:
-		print("Error: Unable to open directory.")
+		push_error("Error: Unable to open directory.")
+		return
+		
+	# Ensure the directory can be read
+	if not dir.dir_exists("res://Levels"):
+		push_error("Error: Directory res://Levels does not exist.")
 		return
 
 	level_paths.clear()
 
-	var file_name = dir.get_next()
-	while file_name != "":
+	var file_names:PackedStringArray = dir.get_files()
+	for file_name in file_names:
 		if file_name.begins_with("level_") and file_name.ends_with(".tscn"):
 			level_paths.append("res://Levels/" + file_name)
-		file_name = dir.get_next()
 
-	level_paths.sort_custom(_compare_two_lvls)
+	# Sort the levels
+	#level_paths.sort_custom(_compare_two_lvls)
+	print("Loaded levels:", level_paths)
+	if len(level_paths)<2:
+		push_error("Very few levels loaded... ", level_paths)
 
 
 func _compare_two_lvls(a,b):
