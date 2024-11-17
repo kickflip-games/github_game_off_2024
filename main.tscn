@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://entities/player/Player.tscn" id="2_hjk1k"]
 [ext_resource type="PackedScene" uid="uid://dahynuukgfg76" path="res://entities/goal/goal.tscn" id="4_4u3ub"]
 [ext_resource type="PackedScene" uid="uid://cdto1w15bi4i5" path="res://entities/enemy/Enemy.tscn" id="6_pyw4a"]
-[ext_resource type="Script" path="res://entities/enemy/linear_path_enemy.gd" id="6_q4w6x"]
 [ext_resource type="Script" path="res://entities/killzone/killzone.gd" id="8_tjbcs"]
 
 [sub_resource type="Curve2D" id="Curve2D_gnl3o"]
@@ -30,20 +29,16 @@ position = Vector2(1493, -25)
 position = Vector2(553, 84)
 walk_speed = 0.0
 
-[node name="LinearPathEnemy" type="Node2D" parent="."]
-script = ExtResource("6_q4w6x")
-metadata/_edit_group_ = true
-
-[node name="Path2D" type="Path2D" parent="LinearPathEnemy"]
+[node name="Path2D" type="Path2D" parent="."]
 position = Vector2(3, 303.07)
 curve = SubResource("Curve2D_gnl3o")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="LinearPathEnemy/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(1260, -7)
 rotation = 3.1397
 rotates = false
 
-[node name="Enemy2" parent="LinearPathEnemy/Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("6_pyw4a")]
+[node name="Enemy2" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("6_pyw4a")]
 position = Vector2(202.011, 4.163)
 rotation = -3.1397
 walk_speed = 40.0

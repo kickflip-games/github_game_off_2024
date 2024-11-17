@@ -8,6 +8,8 @@ extends EnemyState
 
 var current_point_index: int = 0    # Index of the current target point
 var target_point: Vector2             # Current target point to move towards
+var move_direction : Vector2 	#initialize random patrol direction
+var wander_time : float # initialize random time of patrol before changing direction
 
 const X0 := 0.01
 const X1 := 0.99 
@@ -22,15 +24,21 @@ var progress: float:
 
 
 
+#func randomize_wander(): # randomize direction and time when patrolling
+#	move_direction = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized()
+#	wander_time = randf_range(1,3)
+
 
 func update(_delta: float) -> void:
 	if enemy.player_is_visible():
 		finished.emit(ALERTED)
 	if enemy.isDead:
 		finished.emit(DEATH)
+
 	queue_redraw()
 
 func physics_update(_delta: float) -> void:
+	# if random patrol, then random beahavior patrol, else follow path
 	move_along_path(_delta)
 	
 func move_along_path(_delta: float) -> void:
@@ -42,8 +50,8 @@ func move_along_path(_delta: float) -> void:
 	elif !enemy.facing_right and progress<=X0:
 		print("finished moving left -- switching to idle ")
 		finished.emit(IDLE)
-		
 
+	
 
 func enter(previous_state_path: String, data := {}) -> void:
 	print("entering patrolling from ", previous_state_path, " + moving in ", enemy.direction)
