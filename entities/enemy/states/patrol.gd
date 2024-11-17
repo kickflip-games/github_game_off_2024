@@ -8,8 +8,8 @@ extends EnemyState
 
 var current_point_index: int = 0    # Index of the current target point
 var target_point: Vector2             # Current target point to move towards
-var move_direction : Vector2 	#initialize random patrol direction
-var wander_time : float # initialize random time of patrol before changing direction
+#var move_direction : Vector2 	#initialize random patrol direction
+#var wander_time : float # initialize random time of patrol before changing direction
 
 const X0 := 0.01
 const X1 := 0.99 
@@ -25,8 +25,8 @@ var progress: float:
 
 
 #func randomize_wander(): # randomize direction and time when patrolling
-#	move_direction = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized()
-#	wander_time = randf_range(1,3)
+	#move_direction = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized()
+	#wander_time = randf_range(1,3)
 
 
 func update(_delta: float) -> void:
@@ -34,7 +34,10 @@ func update(_delta: float) -> void:
 		finished.emit(ALERTED)
 	if enemy.isDead:
 		finished.emit(DEATH)
-
+	#if wander_time > 0:
+		#wander_time -= _delta
+	#else:
+		#randomize_wander()
 	queue_redraw()
 
 func physics_update(_delta: float) -> void:
@@ -55,7 +58,7 @@ func move_along_path(_delta: float) -> void:
 
 func enter(previous_state_path: String, data := {}) -> void:
 	print("entering patrolling from ", previous_state_path, " + moving in ", enemy.direction)
-	dx = enemy.direction * enemy.walk_speed 	
+	dx = enemy.direction * enemy.walk_speed 	# random movement -> dx = move_direction.x * enemy.walk_speed
 	
 
 func exit() -> void:
