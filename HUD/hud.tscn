@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://boyk6eph3dqka"]
+
+[ext_resource type="Script" path="res://HUD/hud.gd" id="1_e2wnu"]
+[ext_resource type="LabelSettings" uid="uid://cje7uuspukhch" path="res://HUD/hud_ui_settings.tres" id="2_ku7yw"]
+[ext_resource type="Script" path="res://HUD/stopwatch.gd" id="3_xnkym"]
+
+[node name="Hud" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_e2wnu")
+
+[node name="Stopwatch" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "00
+"
+label_settings = ExtResource("2_ku7yw")
+script = ExtResource("3_xnkym")
+
+[node name="LevelNumber" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Level XX"
+label_settings = ExtResource("2_ku7yw")
+horizontal_alignment = 2
