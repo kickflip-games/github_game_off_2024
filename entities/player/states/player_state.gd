@@ -1,23 +1,28 @@
 class_name PlayerState extends State
 
-const GRAPPLING = "GrapplePull"
-const HOOKED = "Hooked"
-const GRAPPLE_STATES = [GRAPPLING, HOOKED]
+const GRAPPLING = "Grappling"
+const GRAPPLED = "Grappling/Grappled"
+const HOOKED = "Grappling/Hooked"
+const SWINGING = "Grappling/Swinging"
+const GRAPPLE_STATES = [GRAPPLING, HOOKED, SWINGING,GRAPPLED]
 
-const IDLE = "Idle"
-const WALKING = "Walking"
+const GROUNDED = "Grounded"
+const IDLE = "Grounded/Idle"
+const WALKING = "Grounded/Walking"
+const GROUNDED_STATES = [GROUNDED, IDLE, WALKING]
 
-const JUMPING = "Jumping"
-const FALLING = "Falling"
-const AIRBORNE_STATES = [JUMPING, FALLING]
+const AIRBORNE = "Airborne"
+const JUMPING = "Airborne/Jumping"
+const FALLING = "Airborne/Falling"
+const AIRBORNE_STATES = [AIRBORNE,JUMPING, FALLING]
 
 const ATTACKING = "Attacking"
 const DEAD = "Dead"
 
 #TODO: add these other states?
-const DANCING = "Dancing"
-const STUNNED = "Stunned"
-const INJURED = "Injured" # or hit?
+#const DANCING = "Dancing"
+#const STUNNED = "Stunned"
+#const INJURED = "Injured" # or hit?
 
 
 var player: Player

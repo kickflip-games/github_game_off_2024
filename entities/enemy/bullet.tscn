@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c7lx6nae4ne6v" path="res://entities/enemy/Arrow.svg" id="2_g6h13"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icwr4"]
+size = Vector2(15, 6)
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 16
@@ -11,6 +12,7 @@ collision_mask = 5
 script = ExtResource("1_c2rgp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_icwr4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
