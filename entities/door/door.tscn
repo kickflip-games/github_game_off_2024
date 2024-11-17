@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ody0em4xfbtk"]
+[gd_scene load_steps=5 format=3 uid="uid://ody0em4xfbtk"]
 
 [ext_resource type="Texture2D" uid="uid://dqr0yv0bdmp78" path="res://art/door.png" id="1_kxwbq"]
 [ext_resource type="Script" path="res://entities/door/door.gd" id="1_l6i0s"]
@@ -7,31 +7,9 @@
 size = Vector2(6, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6enfw"]
-size = Vector2(22, 22)
+size = Vector2(12, 22)
 
-[sub_resource type="GDScript" id="GDScript_l0eal"]
-script/source = "extends CollisionShape2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[sub_resource type="Curve" id="Curve_5o2g0"]
-max_value = 100.0
-_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(0.478114, 70.0136), 16.6311, 16.6311, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_1cmud"]
-colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 1, 1, 1, 1)
-
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="Door" type="StaticBody2D"]
 script = ExtResource("1_l6i0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -42,7 +20,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_6enfw")
-script = SubResource("GDScript_l0eal")
 
 [node name="Open_Door_Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kxwbq")
@@ -54,27 +31,4 @@ texture = ExtResource("1_kxwbq")
 region_enabled = true
 region_rect = Rect2(5, 9, 6, 23)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 40
-lifetime = 0.5
-one_shot = true
-emission_shape = 3
-emission_rect_extents = Vector2(5, 11)
-direction = Vector2(1, 1)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 50.0
-damping_max = 1.0
-damping_curve = SubResource("Curve_5o2g0")
-scale_amount_max = 5.0
-color = Color(0.4, 0.223529, 0.192157, 1)
-color_ramp = SubResource("Gradient_1cmud")
-
-[node name="Timer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
