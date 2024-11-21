@@ -34,6 +34,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
+
 enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/silent_wolf/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg")
 
 [global_group]

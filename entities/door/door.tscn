@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ody0em4xfbtk"]
+
+[ext_resource type="Texture2D" uid="uid://dqr0yv0bdmp78" path="res://art/door.png" id="1_kxwbq"]
+[ext_resource type="Script" path="res://entities/door/door.gd" id="1_l6i0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4mhk"]
+size = Vector2(6, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6enfw"]
+size = Vector2(12, 22)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_l6i0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n4mhk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6enfw")
+
+[node name="Open_Door_Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kxwbq")
+region_enabled = true
+region_rect = Rect2(19, 9, 10, 23)
+
+[node name="Closed_Door_Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kxwbq")
+region_enabled = true
+region_rect = Rect2(5, 9, 6, 23)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
