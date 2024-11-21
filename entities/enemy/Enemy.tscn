@@ -23,6 +23,10 @@ position = Vector2(1.52588e-05, 6.86)
 target_position = Vector2(200, 0)
 collision_mask = 4
 
+[node name="RayFloor" type="RayCast2D" parent="."]
+position = Vector2(8, 0)
+target_position = Vector2(0, 19)
+
 [node name="ViewCone" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ViewCone"]

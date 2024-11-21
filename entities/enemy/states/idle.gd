@@ -13,7 +13,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func _on_idle_timer_timeout():
 	enemy.flip_direction()
-	if enemy.patrollingEnemy:
+	if enemy.patrollingEnemy or(enemy.Behavior == enemy.Choices.Random):
 		finished.emit(PATROL)
 
 
