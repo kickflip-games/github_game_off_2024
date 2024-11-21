@@ -899,10 +899,10 @@ tile_map_data = PackedByteArray("AAAlACEAAAABAAUAAAAlACAAAAABAAEAAAAlAB8AAAAHAAM
 tile_set = SubResource("TileSet_411xk")
 
 [node name="Player" parent="." instance=ExtResource("2_ac8mk")]
-position = Vector2(67, 76)
+position = Vector2(62, 77)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-position = Vector2(67, 76)
+position = Vector2(62, 77)
 script = ExtResource("3_gup77")
 follow_mode = 5
 follow_target = NodePath("../Player")
@@ -915,7 +915,7 @@ draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(67, 76)
+position = Vector2(62, 77)
 zoom = Vector2(2.5, 2.5)
 editor_draw_limits = true
 
@@ -928,4 +928,4 @@ script = ExtResource("5_ux5co")
 position = Vector2(105, 75)
 
 [node name="Enemy" parent="." instance=ExtResource("7_vtqc5")]
-position = Vector2(646, -61)
+position = Vector2(139, 77)

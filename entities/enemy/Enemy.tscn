@@ -153,7 +153,7 @@ bullet_scene = ExtResource("2_vt85h")
 [node name="DetectionRay" type="RayCast2D" parent="."]
 position = Vector2(1.52588e-05, 6.86)
 target_position = Vector2(200, 0)
-collision_mask = 4
+collision_mask = 5
 
 [node name="ViewCone" type="Node2D" parent="."]
 
@@ -161,6 +161,8 @@ collision_mask = 4
 position = Vector2(101, 0.5)
 scale = Vector2(0.219485, 0.0402542)
 texture = ExtResource("3_irr83")
+region_enabled = true
+region_rect = Rect2(0, 0, 892, 472)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j8saf")
