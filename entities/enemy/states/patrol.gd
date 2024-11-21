@@ -25,6 +25,7 @@ var progress: float:
 
 
 func update(_delta: float) -> void:
+	enemy.update_view_cone()
 	if enemy.player_is_visible():
 		finished.emit(ALERTED)
 	if enemy.isDead:

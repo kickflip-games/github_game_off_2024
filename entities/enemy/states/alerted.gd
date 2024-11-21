@@ -29,6 +29,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 		
 
 func update(_delta: float) -> void:
+	enemy.update_view_cone()
 	if not enemy.player_is_visible():
 		finished.emit(IDLE)
 
