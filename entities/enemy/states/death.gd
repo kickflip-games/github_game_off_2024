@@ -2,7 +2,7 @@ extends EnemyState
 
 
 const FX: PackedScene = preload("res://entities/FXs/bang_fx.tscn")
-
+signal death
 @onready var timer:Timer = $DeathTimer
 
 
@@ -15,12 +15,16 @@ func physics_update(_delta: float) -> void:
 
 func enter(previous_state_path: String, data := {}) -> void:
 	timer.start()
+	
 	print("FX spawned")
 	var _fx = FX.instantiate()
 	_fx.global_position = enemy.global_position 
 	_fx.emitting = true
 	enemy.add_child(_fx)
 	enemy.animation.modulate = Color.BLACK
+	death.emit()
+	
+	
 
 func exit() -> void:
 	pass

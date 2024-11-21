@@ -15,6 +15,7 @@ var wander_time : float # initialize random time of patrol before changing direc
 const X0 := 0.01
 const X1 := 0.99 
 
+signal walk
 
 var dx:float
 var dxx:float 
@@ -29,6 +30,7 @@ var progress: float:
 		enemy.path_follow.progress_ratio = clamp(value, 0.001, 0.999)  # Clamp between 0 and 1
 
 func update(_delta: float) -> void:
+	enemy.update_view_cone()
 	if enemy.player_is_visible():
 		finished.emit(ALERTED)
 	if enemy.isDead:
@@ -83,8 +85,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 	dx = enemy.direction * enemy.walk_speed 	
 	print("random direction :", move_direction)
 	print("wander time :", wander_time)
-	
-	
+	walk.emit()
+
 	
 
 func exit() -> void:

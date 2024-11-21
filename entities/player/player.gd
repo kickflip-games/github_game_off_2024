@@ -55,6 +55,7 @@ func take_damage():
 	print("Take damage")
 	if !isDead:
 		isDead = true
+		$AnimatedSprite2D.play("death")
 		GameManager.GameOver()
 
 #
