@@ -12,6 +12,7 @@ var target_point: Vector2             # Current target point to move towards
 const X0 := 0.01
 const X1 := 0.99 
 
+signal walk
 
 var dx:float
 
@@ -48,6 +49,7 @@ func move_along_path(_delta: float) -> void:
 func enter(previous_state_path: String, data := {}) -> void:
 	print("entering patrolling from ", previous_state_path, " + moving in ", enemy.direction)
 	dx = enemy.direction * enemy.walk_speed 	
+	walk.emit()
 	
 
 func exit() -> void:

@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 # Nodes and Scene Variables
-@onready var animation: Sprite2D = $Sprite2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_ray: RayCast2D = $DetectionRay
 @onready var detection_cone:Node = $ViewCone
 @export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
