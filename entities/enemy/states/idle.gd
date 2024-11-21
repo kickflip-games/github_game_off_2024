@@ -3,12 +3,13 @@ extends EnemyState
 
 @onready var timer:Timer = $IdleTimer
 
+signal idle
 
 func enter(previous_state_path: String, data := {}) -> void:
 	enemy.animation.modulate = Color.WHITE
 	enemy.velocity = Vector2.ZERO
 	timer.start(enemy.idling_time_before_flipping)
-	#enemy.animation_player.play("idle")
+	idle.emit()
 
 
 func _on_idle_timer_timeout():
