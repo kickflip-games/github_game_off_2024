@@ -10,11 +10,12 @@ class_name Enemy
 
 
 # have to suply this for the enemy to walk.. (% of path per frame)
-enum Choices {NONE, Static, Along_Path, Random}
-@export var Behavior: Choices = Choices.NONE # pick behavior we want for the enemy
+enum Choices { Static, Along_Path, Random}
+@export var Behavior: Choices = Choices.Static # pick behavior we want for the enemy
 @export var walk_speed: float = 2.5
 @export var idling_time_before_flipping: float = 2.0
 @export var path_follow:PathFollow2D
+@export var RandomTimeforPatrol: int = 5 # used to set the timer time for random patrol
 
 
 var isDead:bool 

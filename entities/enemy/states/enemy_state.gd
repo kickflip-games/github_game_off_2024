@@ -4,6 +4,7 @@ const IDLE = "Idle"
 const ALERTED = "Alerted"
 const PATROL = "Patrol"
 const DEATH = "Death"
+const RANDOMPATROL = "RandomPatrol"
 
 var enemy: Enemy
 

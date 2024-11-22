@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cdto1w15bi4i5"]
+[gd_scene load_steps=31 format=3 uid="uid://cdto1w15bi4i5"]
 
 [ext_resource type="Script" path="res://entities/enemy/Enemy.gd" id="1_hngig"]
 [ext_resource type="PackedScene" uid="uid://c5ysshq28sye7" path="res://entities/enemy/bullet.tscn" id="2_vt85h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://entities/enemy/states/alerted.gd" id="6_b6xva"]
 [ext_resource type="Script" path="res://entities/enemy/states/death.gd" id="6_yueuv"]
 [ext_resource type="Texture2D" uid="uid://c647iigvu6t2h" path="res://art/enemy_death_all_in_one.png" id="9_2s8r6"]
+[ext_resource type="Script" path="res://entities/enemy/states/random_patrol.gd" id="9_dymmw"]
 [ext_resource type="Script" path="res://entities/enemy/states/idle.gd" id="9_hoqif"]
 [ext_resource type="Texture2D" uid="uid://dwa1w2df1jo14" path="res://art/enemy_walk.png" id="10_x7uga"]
 [ext_resource type="Script" path="res://entities/enemy/animated_sprite.gd" id="11_58ai2"]
@@ -194,6 +195,11 @@ script = ExtResource("6_b6xva")
 
 [node name="ShootTimer" type="Timer" parent="StateMachine/Alerted"]
 
+[node name="RandomPatrol" type="Node2D" parent="StateMachine"]
+script = ExtResource("9_dymmw")
+
+[node name="RandomTimer" type="Timer" parent="StateMachine/RandomPatrol"]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vyjym")
 animation = &"idle"
@@ -206,3 +212,4 @@ script = ExtResource("11_58ai2")
 [connection signal="death" from="StateMachine/Death" to="AnimatedSprite2D" method="_on_death_death"]
 [connection signal="timeout" from="StateMachine/Death/DeathTimer" to="StateMachine/Death" method="_on_death_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Alerted/ShootTimer" to="StateMachine/Alerted" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="StateMachine/RandomPatrol/RandomTimer" to="StateMachine/RandomPatrol" method="_on_random_timer_timeout"]
