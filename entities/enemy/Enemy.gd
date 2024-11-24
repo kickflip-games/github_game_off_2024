@@ -26,7 +26,7 @@ var patrollingEnemy:bool:
 	get: return walk_speed > 0 and path_follow!=null
 	
 var RandomPatrollingEnemy:bool:
-	get: return walk_speed > 0 
+	get: return walk_speed > 0 and path_follow == null
 
 
 var facing_right:bool:

@@ -16,7 +16,7 @@ func _on_idle_timer_timeout():
 	enemy.flip_direction()
 	if enemy.patrollingEnemy :
 		finished.emit(PATROL)
-	if enemy.RandomPatrollingEnemy:
+	if enemy.RandomPatrollingEnemy :
 		finished.emit(RANDOMPATROL)
 
 

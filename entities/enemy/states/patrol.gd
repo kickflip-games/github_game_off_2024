@@ -36,8 +36,6 @@ func physics_update(_delta: float) -> void:
 	move_along_path(_delta)
 
 func move_along_path(_delta: float) -> void:
-	if enemy.Behavior == enemy.Choices.Random:
-		return  # Skip updating progress if the behavior is Random
 	# Update the offset based on speed and direction
 	progress +=  dx * _delta * 0.1	
 	if enemy.facing_right and X1<=progress:

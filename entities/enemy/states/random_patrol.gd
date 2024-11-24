@@ -19,32 +19,30 @@ func update(_delta: float) -> void:
 	if enemy.isDead:
 		finished.emit(DEATH)		
 	queue_redraw()
+	
 		
 func _physics_process(_delta: float) -> void:
 	move_random(_delta)
+
 	
 func move_random(_delta: float) -> void:
 		
  	# Apply the velocity to the enemy's position
-	enemy.position += enemy.velocity * _delta
-
+	enemy.position += enemy.velocity * _delta * 3
 	# Check if the raycast detects no floor ahead
 	if not ray_floor.is_colliding():
 		# Reverse the direction to prevent falling
 		move_direction = -move_direction
 		enemy.velocity.x = -enemy.velocity.x
-		enemy.flip_direction()
-	
-	
-	print("velocity", enemy.velocity)
-		
+		#enemy.flip_direction()
+		#finished.emit(IDLE)
+		# move the enemy so it doesn't get stuck on the void
+		#Create a second ray on the other side of the spite -> move enemy where ray is colliding with the floor
 func enter(previous_state_path: String, data := {}) -> void:
 	randomize_wander() # initiate randomness
 	# Update the velocity based on the current move direction
 	enemy.velocity = move_direction * enemy.walk_speed
-	print("random direction :", move_direction)
-	print("wander time :", wander_time)
-	random_timer.start(wander_time)
+	random_timer.start(wander_time)	
 	walk.emit()
 	
 	
@@ -53,3 +51,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func _on_random_timer_timeout() -> void:
 	finished.emit(IDLE)
+	
+func exit() -> void:
+	random_timer.stop()

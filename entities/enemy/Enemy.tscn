@@ -157,8 +157,7 @@ target_position = Vector2(200, 0)
 collision_mask = 5
 
 [node name="RayFloor" type="RayCast2D" parent="."]
-position = Vector2(8, 0)
-target_position = Vector2(0, 19)
+target_position = Vector2(15, 18)
 
 [node name="ViewCone" type="Node2D" parent="."]
 
