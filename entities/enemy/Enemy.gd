@@ -2,11 +2,24 @@ extends CharacterBody2D
 class_name Enemy
 
 # Nodes and Scene Variables
-@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
-@onready var detection_ray: RayCast2D = $DetectionRay
-@onready var viewcone_sprite: Sprite2D = $ViewCone/Sprite2D
-@onready var detection_cone:Node = $ViewCone
+#@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var detection_ray: RayCast2D = $DetectionRay
+#@onready var viewcone_sprite: Sprite2D = $ViewCone/Sprite2D
+#@onready var ray_floor: RayCast2D = $RayFloor
+#@onready var detection_cone:Node = $ViewCone
+#@export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
+
+# new location for nodes and variables -> esier to flip the sprites and cones
 @export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
+@onready var animation: AnimatedSprite2D = $Direction/AnimatedSprite2D
+@onready var viewcone_sprite: Sprite2D = $Direction/ViewCone/Sprite2D
+@onready var ray_floor: RayCast2D = $Direction/RayFloor
+@onready var detection_ray: RayCast2D = $Direction/DetectionRay
+@onready var detection_cone: Node2D = $Direction/ViewCone
+@onready var direction_node: Node2D = $Direction
+
+
+
 
 
 # have to suply this for the enemy to walk.. (% of path per frame)
@@ -44,6 +57,8 @@ func flip_direction() -> void:
 		detection_cone.rotation = 0
 	else:
 		detection_cone.rotate(PI)
+
+
 	
 func player_is_visible() -> bool:
 	var collider = null

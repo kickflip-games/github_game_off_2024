@@ -2,7 +2,7 @@ extends EnemyState
 
 
 @onready var random_timer: Timer = $RandomTimer
-@onready var ray_floor: RayCast2D = $"../../RayFloor" #raycast detecting if floor exist
+
 var move_direction : Vector2 	#initialize random patrol direction
 var wander_time : float # initialize random time of patrol before changing direction
 
@@ -17,40 +17,45 @@ func update(_delta: float) -> void:
 	if enemy.player_is_visible():
 		finished.emit(ALERTED)
 	if enemy.isDead:
-		finished.emit(DEATH)		
+		finished.emit(DEATH)
 	queue_redraw()
 	
 		
 func _physics_process(_delta: float) -> void:
 	move_random(_delta)
+	if not enemy.ray_floor.is_colliding():
+		# Reverse the direction to prevent falling
+		print("floor not colliding, Old direction :", move_direction)
+		move_direction = -move_direction
+		enemy.velocity.x = -enemy.velocity.x
+		enemy.direction_node.scale.x = -enemy.direction_node.scale.x # flips direction node where all the sprites are
+		
+		print("Flipped direction :", move_direction)
+	print("floor colliding :", enemy.ray_floor.is_colliding())
+	if enemy.velocity.x < 0:
+		enemy.direction_node.scale.x = -1
 
 	
 func move_random(_delta: float) -> void:
 		
  	# Apply the velocity to the enemy's position
-	enemy.position += enemy.velocity * _delta * 3
+	enemy.position += enemy.velocity * _delta * 2
 	# Check if the raycast detects no floor ahead
-	if not ray_floor.is_colliding():
-		# Reverse the direction to prevent falling
-		move_direction = -move_direction
-		enemy.velocity.x = -enemy.velocity.x
-		#enemy.flip_direction()
-		#finished.emit(IDLE)
-		# move the enemy so it doesn't get stuck on the void
-		#Create a second ray on the other side of the spite -> move enemy where ray is colliding with the floor
+
 func enter(previous_state_path: String, data := {}) -> void:
 	randomize_wander() # initiate randomness
 	# Update the velocity based on the current move direction
 	enemy.velocity = move_direction * enemy.walk_speed
+	print("Enemy velocity :",enemy.velocity)
 	random_timer.start(wander_time)	
+	if enemy.velocity.x < 0:
+		enemy.flip_direction()
 	walk.emit()
 	
 	
 
-
-
 func _on_random_timer_timeout() -> void:
 	finished.emit(IDLE)
-	
-func exit() -> void:
-	random_timer.stop()
+	#
+#func exit() -> void:
+	#random_timer.stop()
