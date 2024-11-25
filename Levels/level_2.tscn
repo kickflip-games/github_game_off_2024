@@ -40,6 +40,7 @@ rotation = -0.00189394
 
 [node name="Enemy2" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("4_5s8ay")]
 position = Vector2(202.004, -1.68743)
+Behavior = 2
 path_follow = NodePath("..")
 
 [node name="Enemy3" parent="." instance=ExtResource("4_5s8ay")]
@@ -52,7 +53,7 @@ walk_speed = 0.0
 
 [node name="Enemy5" parent="." instance=ExtResource("4_5s8ay")]
 position = Vector2(1241, -77)
-walk_speed = 0.0
+Behavior = 3
 
 [node name="Killzone" type="Area2D" parent="."]
 position = Vector2(8, 389.76)

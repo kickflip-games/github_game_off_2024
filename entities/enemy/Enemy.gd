@@ -2,28 +2,44 @@ extends CharacterBody2D
 class_name Enemy
 
 # Nodes and Scene Variables
-@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
-@onready var detection_ray: RayCast2D = $DetectionRay
-@onready var viewcone_sprite: Sprite2D = $ViewCone/Sprite2D
-@onready var detection_cone:Node = $ViewCone
+#@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var detection_ray: RayCast2D = $DetectionRay
+#@onready var viewcone_sprite: Sprite2D = $ViewCone/Sprite2D
+#@onready var ray_floor: RayCast2D = $RayFloor
+#@onready var detection_cone:Node = $ViewCone
+#@export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
+
+# new location for nodes and variables -> esier to flip the sprites and cones
 @export var bullet_scene: PackedScene  # Drag the Bullet.tscn file here in the Inspector
+@onready var animation: AnimatedSprite2D = $Direction/AnimatedSprite2D
+@onready var viewcone_sprite: Sprite2D = $Direction/ViewCone/Sprite2D
+@onready var ray_floor: RayCast2D = $Direction/RayFloor
+@onready var detection_ray: RayCast2D = $Direction/DetectionRay
+@onready var detection_cone: Node2D = $Direction/ViewCone
+@onready var direction_node: Node2D = $Direction
+
+
+
 
 
 # have to suply this for the enemy to walk.. (% of path per frame)
+enum Choices { Static, Along_Path, Random}
+@export var Behavior: Choices = Choices.Static # pick behavior we want for the enemy
 @export var walk_speed: float = 2.5
 @export var idling_time_before_flipping: float = 2.0
 @export var path_follow:PathFollow2D
+@export var RandomTimeforPatrol: int = 5 # used to set the timer time for random patrol
+
 
 var isDead:bool 
 var isAlerted:bool
 
 
-
-
-
-
 var patrollingEnemy:bool:
 	get: return walk_speed > 0 and path_follow!=null
+	
+var RandomPatrollingEnemy:bool:
+	get: return walk_speed > 0 and path_follow == null
 
 
 var facing_right:bool:
@@ -41,6 +57,8 @@ func flip_direction() -> void:
 		detection_cone.rotation = 0
 	else:
 		detection_cone.rotate(PI)
+
+
 	
 func player_is_visible() -> bool:
 	var collider = null

@@ -9,20 +9,20 @@ extends EnemyState
 var current_point_index: int = 0    # Index of the current target point
 var target_point: Vector2             # Current target point to move towards
 
+
 const X0 := 0.01
 const X1 := 0.99 
 
 signal walk
 
 var dx:float
+var dxx:float 
+
 
 var progress: float:
 	get: return enemy.path_follow.progress_ratio
 	set(value):
 		enemy.path_follow.progress_ratio = clamp(value, 0.001, 0.999)  # Clamp between 0 and 1
-
-
-
 
 func update(_delta: float) -> void:
 	enemy.update_view_cone()
@@ -34,7 +34,7 @@ func update(_delta: float) -> void:
 
 func physics_update(_delta: float) -> void:
 	move_along_path(_delta)
-	
+
 func move_along_path(_delta: float) -> void:
 	# Update the offset based on speed and direction
 	progress +=  dx * _delta * 0.1	
@@ -46,11 +46,11 @@ func move_along_path(_delta: float) -> void:
 		finished.emit(IDLE)
 		
 
-
 func enter(previous_state_path: String, data := {}) -> void:
 	print("entering patrolling from ", previous_state_path, " + moving in ", enemy.direction)
 	dx = enemy.direction * enemy.walk_speed 	
 	walk.emit()
+
 	
 
 func exit() -> void:

@@ -14,8 +14,10 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func _on_idle_timer_timeout():
 	enemy.flip_direction()
-	if enemy.patrollingEnemy:
+	if enemy.patrollingEnemy :
 		finished.emit(PATROL)
+	if enemy.RandomPatrollingEnemy :
+		finished.emit(RANDOMPATROL)
 
 
 func update(_delta: float) -> void:
