@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=43 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://entities/player/states/airborne/jumping.gd" id="9_5p5m5"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/grappling.gd" id="10_iwfwn"]
 [ext_resource type="Script" path="res://entities/player/states/airborne/airborne.gd" id="11_li003"]
+[ext_resource type="Script" path="res://entities/player/states/grounded/attacking.gd" id="12_g3dwt"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/swinging.gd" id="15_ax3aw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vyrs"]
@@ -122,7 +123,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -212,7 +213,7 @@ action_up = "jump"
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k26ai")
 animation = &"attack"
-frame_progress = 0.648762
+frame_progress = 0.706881
 script = ExtResource("4_3dwro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -227,6 +228,7 @@ collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
 position = Vector2(0, -2.5)
+scale = Vector2(1.84, 1)
 shape = SubResource("RectangleShape2D_5fjcv")
 debug_color = Color(0.552249, 0.55982, 0.168505, 0.42)
 
@@ -241,6 +243,9 @@ script = ExtResource("7_y41rv")
 
 [node name="Idle" type="Node2D" parent="StateMachine/Grounded"]
 script = ExtResource("7_q750a")
+
+[node name="Attacking" type="Node2D" parent="StateMachine/Grounded"]
+script = ExtResource("12_g3dwt")
 
 [node name="Airborne" type="Node2D" parent="StateMachine"]
 script = ExtResource("11_li003")
@@ -260,11 +265,11 @@ script = ExtResource("9_2svqd")
 [node name="Swinging" type="Node2D" parent="StateMachine/Grappling"]
 script = ExtResource("15_ax3aw")
 
-[node name="Attacking" type="Node2D" parent="StateMachine"]
-
 [node name="Dead" type="Node2D" parent="StateMachine"]
 
+[connection signal="animation_looped" from="AnimatedSprite2D" to="StateMachine/Grounded/Attacking" method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
 [connection signal="walking" from="StateMachine/Grounded/Walking" to="AnimatedSprite2D" method="_on_walking_walking"]
 [connection signal="idle" from="StateMachine/Grounded/Idle" to="AnimatedSprite2D" method="_on_idle_idle"]
+[connection signal="attack" from="StateMachine/Grounded/Attacking" to="AnimatedSprite2D" method="_on_attacking_attack"]
