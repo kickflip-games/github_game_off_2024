@@ -31,12 +31,14 @@ func update(_delta: float) -> void:
 	enemy.update_view_cone()
 	if not enemy.player_is_visible():
 		finished.emit(IDLE)
+		enemy.exit_alert_mode()
 
 	if can_shoot:
 		shoot_bullet()
 		
 	if enemy.isDead:
 		finished.emit(DEATH)
+		enemy.exit_alert_mode()
 	
 func exit() -> void:
 	timer.stop()

@@ -8,10 +8,12 @@ var last_facing_direction : int
 
 func _physics_process(delta: float) -> void:
 	
-	var idle = !enemy.velocity
+	if enemy.facing_right:
+		last_facing_direction = 1
+	else:
+		last_facing_direction = -1
 	
-	if !idle:
-		last_facing_direction = enemy.velocity.normalized().x
+	
 	
 	animation_tree.set("parameters/Death/blend_position", last_facing_direction)
 	animation_tree.set("parameters/Idle/blend_position", last_facing_direction)

@@ -36,10 +36,9 @@ func _physics_process(delta: float) -> void:
 func flip_direction() -> void:
 	detection_ray.target_position.x = -1*detection_ray.target_position.x
 	update_view_cone()
-	if facing_right :
-		detection_cone.rotation = 0
-	else:
-		detection_cone.rotate(PI)
+	
+	facing_right = !facing_right
+	detection_cone.rotate(PI)
 	
 func player_is_visible() -> bool:
 	var collider = null
@@ -67,6 +66,10 @@ func update_view_cone() -> void:
 func enter_alert_mode():
 	isAlerted = true
 	$ViewCone/Sprite2D.modulate = Color.RED
+
+func exit_alert_mode():
+	isAlerted = false
+	$ViewCone/Sprite2D.modulate = Color.WHITE
 
 func take_damage(knockback_force: Vector2) -> void:
 	if !isDead:
