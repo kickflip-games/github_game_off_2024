@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqedtb5r6m2uk"
-path="res://.godot/imported/player_death.png-375e7802462194c0c49470aedec46bda.ctex"
+uid="uid://rvilf4bu3hvp"
+path="res://.godot/imported/Enemy_52x52_0Pad.png-7246bdc3cfef728319c0cc39b647590a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player_death.png"
-dest_files=["res://.godot/imported/player_death.png-375e7802462194c0c49470aedec46bda.ctex"]
+source_file="res://art/Enemy_52x52_0Pad.png"
+dest_files=["res://.godot/imported/Enemy_52x52_0Pad.png-7246bdc3cfef728319c0cc39b647590a.ctex"]
 
 [params]
 

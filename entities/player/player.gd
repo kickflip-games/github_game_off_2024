@@ -22,12 +22,11 @@ var can_jump: bool = false
 var nearby_enemies: Array = []
 var can_attack:bool = true
 var isDead:bool = false
+var isAttacking:bool = false
 
 
 @onready var chain = $Chain
-@onready var animation_sprite = $AnimatedSprite2D
 #@onready var raycast_to_cursor = $RaycastToCursor
-
 
 
 # Attack all nearby enemies with knockback
@@ -56,7 +55,7 @@ func take_damage():
 	print("Take damage")
 	if !isDead:
 		isDead = true
-		$AnimatedSprite2D.play("death")
+		await get_tree().create_timer(2.0).timeout
 		GameManager.GameOver()
 #
 #func _process(delta):

@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Enemy
 
 # Nodes and Scene Variables
-@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_ray: RayCast2D = $DetectionRay
 @onready var viewcone_sprite: Sprite2D = $ViewCone/Sprite2D
 @onready var detection_cone:Node = $ViewCone
@@ -17,24 +16,24 @@ class_name Enemy
 var isDead:bool 
 var isAlerted:bool
 
-
-
-
-
-
 var patrollingEnemy:bool:
 	get: return walk_speed > 0 and path_follow!=null
 
 
-var facing_right:bool:
-	get:return !animation.flip_h 
+var facing_right: bool = true
 
 var direction: int: # 1 is right, -1 is left
 	get: return 1 if facing_right else -1
 	
+	
+func _physics_process(delta: float) -> void:
+	# Check the enemy's velocity
+	if velocity.x > 0:
+		facing_right = true  # Moving right
+	elif velocity.x < 0:
+		facing_right = false  # Moving left
 
 func flip_direction() -> void:
-	animation.flip_h = !animation.flip_h
 	detection_ray.target_position.x = -1*detection_ray.target_position.x
 	update_view_cone()
 	if facing_right :

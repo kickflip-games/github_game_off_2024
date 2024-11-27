@@ -6,7 +6,7 @@ extends EnemyState
 signal idle
 
 func enter(previous_state_path: String, data := {}) -> void:
-	enemy.animation.modulate = Color.WHITE
+	#enemy.animation.modulate = Color.WHITE
 	enemy.velocity = Vector2.ZERO
 	timer.start(enemy.idling_time_before_flipping)
 	idle.emit()

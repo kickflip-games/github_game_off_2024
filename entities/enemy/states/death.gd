@@ -21,14 +21,10 @@ func enter(previous_state_path: String, data := {}) -> void:
 	_fx.global_position = enemy.global_position 
 	_fx.emitting = true
 	enemy.add_child(_fx)
-	enemy.animation.modulate = Color.BLACK
 	death.emit()
-	
-	
 
 func exit() -> void:
 	pass
-
 
 func _on_death_timer_timeout():
 	enemy.queue_free()

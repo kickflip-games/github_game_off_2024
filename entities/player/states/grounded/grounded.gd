@@ -19,10 +19,6 @@ func handle_input(_event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	var input_direction_x := Input.get_axis("move_left", "move_right")
-	if input_direction_x < 0:
-		player.animation_sprite.flip_h = true
-	elif input_direction_x > 0:
-		player.animation_sprite.flip_h = false
 
 ## Called by the state machine on the engine's main loop tick.
 func physics_update(_delta: float) -> void:

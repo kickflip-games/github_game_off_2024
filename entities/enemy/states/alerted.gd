@@ -20,7 +20,6 @@ func _on_shoot_timer_timeout():
 
 
 func enter(previous_state_path: String, data := {}) -> void:
-	enemy.animation.modulate = Color.RED
 	timer.start()
 	if enemy.isAlerted:
 		can_shoot = true
