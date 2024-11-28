@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dr58cm0s588x0"]
+[gd_scene load_steps=11 format=4 uid="uid://dr58cm0s588x0"]
 
 [ext_resource type="TileSet" uid="uid://ddv2rnx0dwxf" path="res://map/tiles.tres" id="1_1b1mb"]
 [ext_resource type="Script" path="res://map/game_tiles.gd" id="2_b5is5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://entities/killzone/killzone.gd" id="5_vqkgw"]
 [ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://entities/player/Player.tscn" id="6_1u3uo"]
 [ext_resource type="PackedScene" uid="uid://c8xk1rohg3jp4" path="res://entities/camera/camera_manager.tscn" id="7_2bn7w"]
+[ext_resource type="PackedScene" uid="uid://bdulkix57vh7g" path="res://entities/Hookable/hookable_point.tscn" id="8_nmh17"]
 
 [sub_resource type="Curve2D" id="Curve2D_gnl3o"]
 _data = {
@@ -82,6 +83,9 @@ visible = false
 [node name="CollisionShape2D" parent="CameraManager/CameraBounds" index="0"]
 position = Vector2(627, 46.5)
 debug_color = Color(0.52066, 0.440946, 0.944405, 0.42)
+
+[node name="HookablePoint" parent="." instance=ExtResource("8_nmh17")]
+position = Vector2(510, 215)
 
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
 

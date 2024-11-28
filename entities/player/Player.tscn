@@ -216,6 +216,7 @@ script = ExtResource("15_ax3aw")
 [node name="Dead" type="Node2D" parent="StateMachine"]
 
 [node name="RayCastGrapple" type="RayCast2D" parent="."]
+collision_mask = 265
 script = ExtResource("15_e1jvr")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
