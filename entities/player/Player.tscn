@@ -637,8 +637,9 @@ advance_mode = 2
 advance_expression = "!velocity"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7krb1"]
+switch_mode = 2
 advance_mode = 2
-advance_expression = "!isAttacking
+advance_expression = "
 "
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j5qrf"]
@@ -663,7 +664,7 @@ advance_expression = "isDead"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rsw3u"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_ph7no")
-states/Attack/position = Vector2(516, 107)
+states/Attack/position = Vector2(802, 251)
 states/Death/node = SubResource("AnimationNodeBlendSpace1D_q8jur")
 states/Death/position = Vector2(683, 107)
 states/End/position = Vector2(826, 107)
@@ -672,6 +673,7 @@ states/Idle/position = Vector2(382, 162)
 states/Run/node = ExtResource("16_li5tc")
 states/Run/position = Vector2(382, 72)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ynrev"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_r36fg"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_yc3vn"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_7krb1"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_j5qrf"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_vk60b"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_rbpp6"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_80nhn"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_6eycb")]
+graph_offset = Vector2(119, 67)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 4
@@ -763,3 +765,5 @@ animation_tree = NodePath("../AnimationTree")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
+[connection signal="animation_finished" from="AnimationTree" to="StateMachine/Grounded/Attacking" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="StateMachine/Grounded/Attacking" method="_on_animation_tree_animation_started"]
