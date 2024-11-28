@@ -727,6 +727,7 @@ texture = ExtResource("1_ijmsi")
 22:11/0 = 0
 23:11/0 = 0
 0:12/0 = 0
+0:12/0/custom_data_0 = true
 1:12/0 = 0
 2:12/0 = 0
 3:12/0 = 0
@@ -902,6 +903,7 @@ texture = ExtResource("1_ijmsi")
 21:19/0 = 0
 22:19/0 = 0
 23:19/0 = 0
+16:8/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 128

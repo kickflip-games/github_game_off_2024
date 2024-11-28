@@ -134,6 +134,7 @@ func get_grapple_input_vector(_event: InputEvent)->Vector2:
 	direction = (mouse_pos - global_position).normalized()
 	raycast_grapple.target_position = direction * RAYCAST_LENGTH
 	raycast_grapple.force_raycast_update()
+	
 
 	# check if raycast hits a grappable tile
 	if raycast_grapple.is_colliding() and _event is InputEventMouseButton:
@@ -143,8 +144,8 @@ func get_grapple_input_vector(_event: InputEvent)->Vector2:
 
 			if collider and collider is StaticBody2D and collider.name == "DetectionBody2D":
 				var grapple_center: Vector2 = collider.global_position
-				print("Raycast collision point:", raycast_grapple.get_collision_point())
-				print("Collider global position (center):", collider.global_position)
+				#print("Raycast collision point:", raycast_grapple.get_collision_point())
+				#print("Collider global position (center):", collider.global_position)
 				return (grapple_center - global_position).normalized()
 	# if no collision with grappable tile			
 	return Vector2.ZERO

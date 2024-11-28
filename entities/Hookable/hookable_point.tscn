@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdulkix57vh7g"]
+[gd_scene load_steps=5 format=3 uid="uid://bdulkix57vh7g"]
 
+[ext_resource type="Script" path="res://entities/Hookable/hookable_point.gd" id="1_edsp1"]
 [ext_resource type="Texture2D" uid="uid://pqbfjhdk7rs5" path="res://art/hook-point.png" id="1_r7rfn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lo3s6"]
@@ -9,9 +10,11 @@ radius = 37.1214
 radius = 9.05539
 
 [node name="HookablePoint" type="Node2D"]
-position = Vector2(492, 117)
+position = Vector2(549, 305)
+script = ExtResource("1_edsp1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_r7rfn")
 
 [node name="DetectionBody2D" type="StaticBody2D" parent="."]
