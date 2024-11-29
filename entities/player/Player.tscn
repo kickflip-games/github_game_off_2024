@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=43 format=3 uid="uid://d3y8x2rfc7rly"]
+
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
@@ -18,6 +20,7 @@
 [ext_resource type="Script" path="res://entities/player/states/airborne/airborne.gd" id="11_li003"]
 [ext_resource type="Script" path="res://entities/player/states/grounded/attacking.gd" id="12_g3dwt"]
 [ext_resource type="Script" path="res://entities/player/states/grappling/swinging.gd" id="15_ax3aw"]
+[ext_resource type="Script" path="res://entities/player/ray_cast_grapple.gd" id="15_e1jvr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vyrs"]
 atlas = ExtResource("3_neoes")
@@ -267,7 +270,13 @@ script = ExtResource("15_ax3aw")
 
 [node name="Dead" type="Node2D" parent="StateMachine"]
 
+[node name="RayCastGrapple" type="RayCast2D" parent="."]
+collision_mask = 265
+script = ExtResource("15_e1jvr")
+
+
 [connection signal="animation_looped" from="AnimatedSprite2D" to="StateMachine/Grounded/Attacking" method="_on_animated_sprite_2d_animation_looped"]
+
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
 [connection signal="walking" from="StateMachine/Grounded/Walking" to="AnimatedSprite2D" method="_on_walking_walking"]
