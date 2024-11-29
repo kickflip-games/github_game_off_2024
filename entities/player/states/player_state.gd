@@ -8,14 +8,13 @@ const GRAPPLE_STATES = [GRAPPLING, HOOKED]
 const GROUNDED = "Grounded"
 const IDLE = "Grounded/Idle"
 const WALKING = "Grounded/Walking"
-const GROUNDED_STATES = [IDLE, WALKING]
+const ATTACKING = "Grounded/Attacking"
+const GROUNDED_STATES = [IDLE, WALKING, ATTACKING]
 
 const AIRBORNE = "Airborne"
 const JUMPING = "Airborne/Jumping"
 const FALLING = "Airborne/Falling"
 const AIRBORNE_STATES = [JUMPING, FALLING]
-
-const ATTACKING = "Attacking"
 const DEAD = "Dead"
 
 

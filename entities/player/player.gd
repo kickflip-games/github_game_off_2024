@@ -28,6 +28,7 @@ var isDead:bool = false
 
 @onready var raycast_grapple = $RayCastGrapple
 @onready var chain = $Chain
+@onready var animation_sprite = $AnimatedSprite2D
 #@onready var raycast_to_cursor = $RaycastToCursor
 
 func _ready():
@@ -60,8 +61,8 @@ func take_damage():
 	print("Take damage")
 	if !isDead:
 		isDead = true
+		$AnimatedSprite2D.play("death")
 		GameManager.GameOver()
-
 #
 #func _process(delta):
 	#update_raycast_to_cursor()
@@ -78,7 +79,7 @@ func take_damage():
 
 func attack_input_pressed(_event: InputEvent)->bool:
 	if _event is InputEventMouseButton:
-		if _event.is_pressed() and enemies_are_nearby:  # Mouse button down.
+		if _event.is_pressed():  # Mouse button down.
 			return true
 	return false
 
