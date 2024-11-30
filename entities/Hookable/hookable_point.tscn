@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdulkix57vh7g"]
+
+[ext_resource type="Script" path="res://entities/Hookable/hookable_point.gd" id="1_edsp1"]
+[ext_resource type="Texture2D" uid="uid://pqbfjhdk7rs5" path="res://art/hook-point.png" id="1_r7rfn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lo3s6"]
+radius = 37.1214
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gei7l"]
+radius = 9.05539
+
+[node name="HookablePoint" type="Node2D"]
+position = Vector2(549, 305)
+script = ExtResource("1_edsp1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_r7rfn")
+
+[node name="DetectionBody2D" type="StaticBody2D" parent="."]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBody2D"]
+shape = SubResource("CircleShape2D_lo3s6")
+
+[node name="CollisionBody2D" type="StaticBody2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBody2D"]
+shape = SubResource("CircleShape2D_gei7l")

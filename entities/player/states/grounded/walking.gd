@@ -1,6 +1,10 @@
 extends Grounded
 # walkinng
 
+signal walking
+
+func enter(previous_state_path: String, data := {}) -> void:
+	walking.emit()
 
 
 ## Called by the state machine on the engine's physics update tick.

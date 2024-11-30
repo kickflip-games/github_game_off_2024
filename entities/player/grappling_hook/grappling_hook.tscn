@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0jsi5texctsy"]
 
 [ext_resource type="Script" path="res://entities/player/grappling_hook/grappling_hook.gd" id="1_c708d"]
-[ext_resource type="Texture2D" uid="uid://ne3le6pt7kca" path="res://entities/player/grappling_hook/links.svg" id="2_5tkt8"]
-[ext_resource type="Texture2D" uid="uid://e8ko2xfqww1h" path="res://entities/player/grappling_hook/tip.svg" id="3_s3fin"]
+[ext_resource type="Texture2D" uid="uid://cb4gpogxxxwc6" path="res://art/rope.png" id="2_7kbgn"]
+[ext_resource type="Texture2D" uid="uid://c6a71ft1ihb2l" path="res://art/Hook.png" id="3_xb7rk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hb2xo"]
 radius = 2.0
@@ -14,11 +14,10 @@ script = ExtResource("1_c708d")
 [node name="Links" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 1)
-scale = Vector2(0.3, 1)
-texture = ExtResource("2_5tkt8")
+position = Vector2(0, 6)
+texture = ExtResource("2_7kbgn")
 centered = false
-offset = Vector2(-8, -1.95)
+offset = Vector2(-6, -1.95)
 region_enabled = true
 region_rect = Rect2(1.56455, 2.07995, 12.6128, 99.9106)
 
@@ -29,7 +28,7 @@ motion_mode = 1
 
 [node name="Hook" type="Sprite2D" parent="Tip"]
 texture_filter = 3
-texture = ExtResource("3_s3fin")
+texture = ExtResource("3_xb7rk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tip"]
 shape = SubResource("CapsuleShape2D_hb2xo")

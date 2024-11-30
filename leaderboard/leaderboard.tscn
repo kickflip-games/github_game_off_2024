@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://b2h8ok8yfc7wb" path="res://addons/silent_wolf/Scores/Leaderboard.tscn" id="1_qvvhb"]
 
 [node name="Leaderboard" instance=ExtResource("1_qvvhb")]
+
+[node name="HighScores" parent="OldBoard" index="0"]
+visible = false
