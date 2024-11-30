@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dr58cm0s588x0"]
+[gd_scene load_steps=10 format=4 uid="uid://bovo64xtfgxfs"]
 
 [ext_resource type="TileSet" uid="uid://ddv2rnx0dwxf" path="res://map/tiles.tres" id="1_1b1mb"]
 [ext_resource type="Script" path="res://map/game_tiles.gd" id="2_b5is5"]
@@ -71,6 +71,7 @@ position = Vector2(-75, 199)
 dead_zone_width = 0.02
 
 [node name="Camera2D" parent="CameraManager" index="1"]
+process_callback = 0
 limit_left = -368
 limit_top = -259
 limit_right = 1622
