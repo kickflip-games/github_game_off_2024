@@ -15,6 +15,7 @@ var distance_to_tip:float:
 
 func handle_input(_event: InputEvent) -> void:
 	input_direction = Input.get_vector("move_left", "move_right", "jump", "move_down")
+
 	
 	if player.mouse_released(_event):
 		release_chain_and_transition_state()
@@ -65,11 +66,13 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 	
 
-func release_chain_and_transition_state():
+func release_chain_and_transition_state(is_jumping:= false):
 	#if name not in GRAPPLE_STATES:
 		#push_error("Invalid state trying to grapple release: ", name) # Is this relevant? Instead of name=="Grappled", the grappling states are "Grappling/Grappled"
 	player.chain.release()
-	if player.is_on_floor():
+	if is_jumping:
+		finished.emit(JUMPING)		
+	elif player.is_on_floor():
 		finished.emit(IDLE)
 	else:
 		finished.emit(FALLING)
