@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bpca73jtpswlh"]
+[gd_scene load_steps=12 format=4 uid="uid://bpca73jtpswlh"]
 
 [ext_resource type="TileSet" uid="uid://ddv2rnx0dwxf" path="res://map/tiles.tres" id="1_mh2lw"]
 [ext_resource type="Script" path="res://map/game_tiles.gd" id="2_q7iby"]
@@ -7,8 +7,15 @@
 [ext_resource type="Script" path="res://entities/killzone/killzone.gd" id="5_rcynb"]
 [ext_resource type="PackedScene" uid="uid://d3y8x2rfc7rly" path="res://entities/player/Player.tscn" id="6_d5qx6"]
 [ext_resource type="PackedScene" uid="uid://c8xk1rohg3jp4" path="res://entities/camera/camera_manager.tscn" id="7_ud6j3"]
+[ext_resource type="PackedScene" uid="uid://b0quybotoap03" path="res://entities/light/custom_light.tscn" id="8_14qdj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gmq3k"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4visk"]
+polygon = PackedVector2Array(8, -22, 8, 23, 0, 23, 0, 22, 7, 22, 7, -21, 0, -21, 0, -22)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l50bu"]
+polygon = PackedVector2Array(8, -22, -5, -22, -5, -21, 7, -21, 7, 29, -5, 29, -5, 30, 8, 30)
 
 [node name="Main" type="Node2D"]
 
@@ -52,6 +59,44 @@ visible = false
 [node name="CollisionShape2D" parent="CameraManager/CameraBounds" index="0"]
 position = Vector2(627, 46.5)
 debug_color = Color(0.52066, 0.440946, 0.944405, 0.42)
+
+[node name="Light" type="Node" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Light"]
+color = Color(1, 0.862745, 0.87451, 0.870588)
+energy = 0.81
+blend_mode = 1
+
+[node name="Light 1" parent="Light" instance=ExtResource("8_14qdj")]
+position = Vector2(488, 118)
+color = Color(0.999997, 0.72023, 0.388218, 1)
+shadow_filter_smooth = 18.3
+texture_scale = 2.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light/Light 1"]
+occluder = SubResource("OccluderPolygon2D_4visk")
+
+[node name="Light 2" parent="Light" instance=ExtResource("8_14qdj")]
+position = Vector2(672, 120)
+rotation = -1.5708
+color = Color(0.999997, 0.72023, 0.388218, 1)
+shadow_filter_smooth = 18.3
+texture_scale = 2.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light/Light 2"]
+position = Vector2(1.74846e-07, -4)
+occluder = SubResource("OccluderPolygon2D_l50bu")
+
+[node name="Light 3" parent="Light" instance=ExtResource("8_14qdj")]
+position = Vector2(1104, 120)
+rotation = -1.5708
+color = Color(0.999997, 0.72023, 0.388218, 1)
+shadow_filter_smooth = 18.3
+texture_scale = 2.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light/Light 3"]
+position = Vector2(1.74846e-07, -4)
+occluder = SubResource("OccluderPolygon2D_l50bu")
 
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
 
