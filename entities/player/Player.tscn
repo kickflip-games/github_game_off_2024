@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://d3y8x2rfc7rly"]
+[gd_scene load_steps=44 format=3 uid="uid://d3y8x2rfc7rly"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_e20yk"]
 [ext_resource type="Texture2D" uid="uid://c5nbgqhp6nlim" path="res://art/player_walk.png" id="2_0o3qo"]
@@ -188,7 +188,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7usrl"]
@@ -214,8 +214,7 @@ action_up = "jump"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k26ai")
-animation = &"attack"
-frame_progress = 0.706881
+animation = &"run"
 script = ExtResource("4_3dwro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -272,6 +271,7 @@ script = ExtResource("15_ax3aw")
 [node name="RayCastGrapple" type="RayCast2D" parent="."]
 collision_mask = 265
 script = ExtResource("15_e1jvr")
+
 
 [node name="Custom_Light" parent="." instance=ExtResource("20_yewkh")]
 texture_scale = 1.0
