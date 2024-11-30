@@ -187,7 +187,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7usrl"]
@@ -213,8 +213,7 @@ action_up = "jump"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k26ai")
-animation = &"attack"
-frame_progress = 0.706881
+animation = &"run"
 script = ExtResource("4_3dwro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
